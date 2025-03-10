@@ -1,136 +1,97 @@
 package org.example;
 
-import Exceptions.IncorrectPassException;
-import Exceptions.NoSuchUserException;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.AnchorPane;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import services.Database;
 import Exceptions.FieldsAreBlankException;
 import Exceptions.UserExistsException;
-
 import java.io.IOException;
 
 public class Registration {
+    private Stage stage;
+    private Scene scene;
+    private Parent root;
+
     @FXML
-    private AnchorPane registrationPage;
+    private TextField usernameField;
     @FXML
-    private AnchorPane loginPage;
+    private TextField nameField;
     @FXML
-    private Button signInButton;
+    private PasswordField passwordField;
     @FXML
-    private PasswordField passField;
+    private TextField surnameField;
     @FXML
-    private TextField username;
+    private Label userMessage;
     @FXML
-    private TextField name;
-    @FXML
-    private TextField surname;
+    private Label switchToLogin;
     @FXML
     private Button signUpButton;
-    @FXML
-    private Label alreadyExists;
-    @FXML
-    private TextField usernameInLoginPage;
-    @FXML
-    private PasswordField passFieldInLoginPage;
-    @FXML
-    private Button signInInLoginPage;
-    @FXML
-    private Button signUpInLoginPage;
-    @FXML
-    private Label error;
 
     @FXML
     private void initialize() {
-//        button action listeners
-        signUpButton.setOnAction(event -> {signUpButtonHandler();});
-        signInButton.setOnAction(event -> {signInButtonHandler();});
-        signUpInLoginPage.setOnAction(event -> {signUpInLoginPageHandler();});
-        signInInLoginPage.setOnAction(event -> {signInInLoginPageHandler();});
+        // button action listeners
+        switchToLogin.setOnMouseClicked(this::switchToLogin);
+        signUpButton.setOnAction(this::signUpButtonHandler);
     }
-// sign up func
-    private void signUpButtonHandler(){
+
+    // action on sign up button
+    private void signUpButtonHandler(ActionEvent event){
         try {
-            if(signUp()){
-                registrationPage.setVisible(false);
-                loginPage.setVisible(true);
+            if (signUp()) {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/login.fxml"));
+                root = loader.load();
+
+                stage = (Stage)((Node) event.getSource()).getScene().getWindow();
+                scene = new Scene(root);
+                stage.setScene(scene);
+                stage.show();
             }
-        }catch (UserExistsException | FieldsAreBlankException | IOException e){
-            alreadyExists.setText(e.getMessage());
+        } catch (UserExistsException | FieldsAreBlankException | IOException e){
+            userMessage.setText(e.getMessage());
         }
     }
-// change from login to register
-    private void signInButtonHandler(){
-        loginPage.setVisible(true);
-        registrationPage.setVisible(false);
+
+    // switch to log in scene
+    private void switchToLogin(MouseEvent event) {
+        try {
+            Parent root = FXMLLoader.load(getClass().getResource("/login.fxml"));
+            stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+            scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException e) {}
     }
-// change from register to login
-    private void signUpInLoginPageHandler(){
-        registrationPage.setVisible(true);
-        loginPage.setVisible(false);
-    }
-// sign in func
-    private void signInInLoginPageHandler(){
-        try{
-            signIn();
-        } catch (FieldsAreBlankException | NoSuchUserException | IncorrectPassException e){
-            error.setText(e.getMessage());
-        }
-    }
+
     Database database = Database.getInstance();
+
+    // sign up func
     private boolean signUp() throws UserExistsException, FieldsAreBlankException, IOException {
-        alreadyExists.setText("");
+        userMessage.setText("");
         checkIfBlank();
-        String login = this.username.getText();
-        String password = this.passField.getText();
-        String name = this.name.getText();
-        String surname = this.surname.getText();
-        database.addUserToDatabase(login, password, name, surname);
-//        just reminder with login details
-        System.out.printf("login: %s, password: %s\n", login, password);
+        String username = this.usernameField.getText();
+        String password = this.passwordField.getText();
+        String name = this.nameField.getText();
+        String surname = this.surnameField.getText();
+        database.addUserToDatabase(username, password, name, surname);
+        // just reminder with login details
+        System.out.printf("login: %s, password: %s\n", username, password);
         return true;
     }
-    private void signIn() throws FieldsAreBlankException, NoSuchUserException {
-        error.setText("");
-        checkIfBlankInLogin();
-        String login = this.usernameInLoginPage.getText();
-        String password = this.passFieldInLoginPage.getText();
-        if(database.checkUser(login, password)){
-            goToDashboard();
-        }
-    }
+
+    // blank field check
     private void checkIfBlank() throws FieldsAreBlankException {
-        if(this.username.getText().isBlank() || this.passField.getText().isBlank()){
+        if(this.usernameField.getText().isBlank() || this.passwordField.getText().isBlank()){
             throw new FieldsAreBlankException();
-        }
-    }
-    private void checkIfBlankInLogin() throws FieldsAreBlankException {
-        if(this.usernameInLoginPage.getText().isBlank() || this.passFieldInLoginPage.getText().isBlank()){
-            throw new FieldsAreBlankException();
-        }
-    }
-
-    private void goToDashboard(){
-        try{
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Dashboard.fxml"));
-            AnchorPane dashboardPage = loader.load();
-
-            Dashboard dashboardController = loader.getController();
-            dashboardController.setHelloUsername(this.usernameInLoginPage.getText());
-
-            Scene dashboardScene = new Scene(dashboardPage);
-            Stage stage = (Stage) registrationPage.getScene().getWindow();
-
-            stage.setScene(dashboardScene);
-        } catch (IOException e) {
-            e.printStackTrace();
         }
     }
 }
