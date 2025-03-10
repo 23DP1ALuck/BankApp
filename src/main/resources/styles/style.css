@@ -1,0 +1,21 @@
+#switchToLogin{
+    -fx-text-fill: #c39bd3;
+}
+#switchToRegistration{
+    -fx-text-fill: #c39bd3;
+}
+#switchToLogin:hover{
+    -fx-text-fill: #820AD1;
+    -fx-font-size: 14.0;
+}
+#switchToRegistration:hover{
+    -fx-text-fill: #820AD1;
+    -fx-font-size: 14.0;
+}
+@font-face {
+    font-family: "Roboto Regular";
+    src: url("../fonts/RobotoDefault.ttf")
+}
+Label{
+    -fx-font-family: "Roboto Regular";
+}

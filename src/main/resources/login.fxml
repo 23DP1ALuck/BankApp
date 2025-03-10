@@ -4,20 +4,30 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="507.0" prefWidth="603.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.Login">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="507.0" prefWidth="603.0" style="-fx-background-color: #1E1E1E;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.Login">
     <children>
-        <Button fx:id="loginButton" layoutX="277.0" layoutY="277.0" mnemonicParsing="false" text="Login" />
-        <Label layoutX="233.0" layoutY="93.0" text="Welcome!">
+        <Button fx:id="loginButton" layoutX="262.0" layoutY="283.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="68.0" style="-fx-background-color: #8E44AD;" text="Login" textFill="WHITE" />
+        <Label layoutX="210.0" layoutY="87.0" text="Welcome!" textFill="WHITE">
             <font>
-                <Font size="32.0" />
+                <Font name="Roboto Regular" size="40.0" />
             </font>
         </Label>
         <TextField fx:id="usernameField" layoutX="221.0" layoutY="204.0" promptText="username" />
         <PasswordField fx:id="passwordField" layoutX="221.0" layoutY="239.0" promptText="password" />
-        <Label fx:id="switchToRegistration" layoutX="236.0" layoutY="363.0" text="Don't have an account?" />
+        <Label id="switchToRegistration" fx:id="switchToRegistration" layoutX="226.0" layoutY="360.0" text="Don't have an account?" textFill="#c39bd3">
+         <font>
+            <Font name="Roboto Regular" size="14.0" />
+         </font></Label>
         <Label fx:id="userMessage" alignment="CENTER" layoutY="315.0" prefHeight="17.0" prefWidth="603.0" />
+      <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@images/VAbank.png" />
+         </image>
+      </ImageView>
     </children>
 </AnchorPane>
