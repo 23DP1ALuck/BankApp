@@ -1,14 +1,9 @@
 [
   {
-    "username": "jeka1012",
-    "password": "kkaattyyaa",
-    "name": "jeka",
-    "surname": "truba"
-  },
-  {
-    "username": "qwe",
-    "password": "qwe",
-    "name": "QWE",
-    "surname": "QWE"
+    "username": "luckijartem",
+    "password": "qwerty21",
+    "name": "Artjoms",
+    "surname": "Luckis",
+    "balance": 1000.0
   }
 ]

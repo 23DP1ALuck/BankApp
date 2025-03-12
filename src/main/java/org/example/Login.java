@@ -16,6 +16,7 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
+import models.User;
 import services.Database;
 
 public class Login {
@@ -62,9 +63,13 @@ public class Login {
                 root = loader.load();
 
                 Dashboard dashboardController = loader.getController();
-                dashboardController.setHelloUsername(this.usernameField.getText());
+                dashboardController.setHelloUsername(database.getFirstNameAndLastName(this.usernameField.getText()));
 
                 stage = (Stage)((Node) event.getSource()).getScene().getWindow();
+                stage.setWidth(1280);
+                stage.setHeight(720);
+                stage.setResizable(false);
+                stage.centerOnScreen();
                 scene = new Scene(root);
                 stage.setScene(scene);
                 stage.show();
