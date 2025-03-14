@@ -1,21 +1,27 @@
 #switchToLogin{
-    -fx-text-fill: #c39bd3;
+    -fx-text-fill: #ffffffb2;
 }
 #switchToRegistration{
-    -fx-text-fill: #c39bd3;
+    -fx-text-fill: #ffffffb2;
 }
 #switchToLogin:hover{
-    -fx-text-fill: #820AD1;
+    -fx-text-fill: #ffffff;
     -fx-font-size: 14.0;
 }
 #switchToRegistration:hover{
-    -fx-text-fill: #820AD1;
+    -fx-text-fill: #ffffff;
     -fx-font-size: 14.0;
 }
 @font-face {
-    font-family: "Roboto Regular";
-    src: url("../fonts/RobotoDefault.ttf")
+    font-family: "Montserrat SemiBold";
+    src: url("../fonts/Montserrat-SemiBold.ttf")
 }
 Label{
-    -fx-font-family: "Roboto Regular";
+    -fx-font-family: "Montserrat SemiBold";
+}
+TextField{
+    -fx-font-family: "Montserrat SemiBold";
+}
+PasswordField{
+    -fx-font-family: "Montserrat SemiBold";
 }
