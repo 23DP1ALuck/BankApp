@@ -1,8 +1,42 @@
 [
   {
-    "username": "jeka1012",
-    "password": "kkaattyyaa",
-    "name": "jeka",
-    "surname": "truba"
+    "username": "marat",
+    "password": "marat228",
+    "name": "Marats",
+    "surname": "Razživins",
+    "balance": 1000.0,
+    "accountNumber": "LV29HABA3688476812176"
+  },
+  {
+    "username": "luckijartem",
+    "password": "QWerty21",
+    "name": "Artjoms",
+    "surname": "Luckis",
+    "balance": 1000.0,
+    "accountNumber": "LV29HABA9937807036874"
+  },
+  {
+    "username": "adrians2007",
+    "password": "qwerty21",
+    "name": "Adrians",
+    "surname": "Vanags",
+    "balance": 1000.0,
+    "accountNumber": "LV29HABA4082270470628"
+  },
+  {
+    "username": "seba2005",
+    "password": "qwerty21",
+    "name": "Sebastians",
+    "surname": "Sevruks",
+    "balance": 1000.0,
+    "accountNumber": "LV29HABA9253436637392"
+  },
+  {
+    "username": "megnis2006",
+    "password": "cubacuba",
+    "name": "Edvards",
+    "surname": "Megnis",
+    "balance": 1000.0,
+    "accountNumber": "LV29HABA1249683178511"
   }
 ]

@@ -1,0 +1,39 @@
+#switchToLogin{
+    -fx-text-fill: #ffffffb2;
+}
+#switchToRegistration{
+    -fx-text-fill: #ffffffb2;
+}
+#switchToLogin:hover{
+    -fx-text-fill: #ffffff;
+    -fx-font-size: 14.0;
+}
+#switchToRegistration:hover{
+    -fx-text-fill: #ffffff;
+    -fx-font-size: 14.0;
+}
+#navDashboardContainer:hover{
+    -fx-background-color: rgba(255,255,255,0.1);
+    -fx-background-radius: 12.5;
+}
+#navPaymentContainer:hover{
+    -fx-background-color: rgba(255,255,255,0.1);
+    -fx-background-radius: 12.5;
+}
+#navVaBankContainer:hover{
+    -fx-background-color: rgba(255,255,255,0.1);
+    -fx-background-radius: 12.5;
+}
+@font-face {
+    font-family: "Montserrat SemiBold";
+    src: url("../fonts/Montserrat-SemiBold.ttf")
+}
+Label{
+    -fx-font-family: "Montserrat SemiBold";
+}
+TextField{
+    -fx-font-family: "Montserrat SemiBold";
+}
+PasswordField{
+    -fx-font-family: "Montserrat SemiBold";
+}

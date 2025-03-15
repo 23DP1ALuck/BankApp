@@ -1,15 +1,91 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Ellipse?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #7A73D1;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.Dashboard">
+<AnchorPane prefHeight="800.0" prefWidth="1280.0" style="-fx-background-color: #1E1E1E;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.Dashboard">
    <children>
-      <Label fx:id="hello" alignment="CENTER" contentDisplay="CENTER" layoutX="-1.0" layoutY="156.0" prefHeight="17.0" prefWidth="600.0" textFill="#00ff22">
-         <font>
-            <Font size="35.0" />
-         </font>
-      </Label>
+      <Pane prefHeight="802.0" prefWidth="216.0" style="-fx-background-color: rgba(255,255,255, 0.05);">
+         <children>
+            <ImageView fitHeight="54.0" fitWidth="83.0" layoutX="11.0" layoutY="18.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/VAbankWhite.png" />
+               </image>
+            </ImageView>
+            <Label fx:id="nameAndLastName" layoutX="63.0" layoutY="87.0" prefHeight="17.0" prefWidth="158.0" text="Name Surname" textFill="WHITE" />
+            <Ellipse fill="#ffffffdc" layoutX="33.0" layoutY="104.0" radiusX="18.0" radiusY="18.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
+            <ImageView fitHeight="19.0" fitWidth="18.0" layoutX="24.0" layoutY="95.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/userIcon.png" />
+               </image>
+            </ImageView>
+            <Label fx:id="username" layoutX="65.0" layoutY="102.0" prefHeight="24.0" prefWidth="171.0" text="\\@username" textFill="#ffffff6a">
+               <font>
+                  <Font size="9.0" />
+               </font>
+            </Label>
+            <Pane layoutX="12.0" layoutY="138.0" prefHeight="43.0" prefWidth="195.0" style="-fx-background-color: rgba(255,255,255,0.1); -fx-background-radius: 20; -fx-border-color: white; -fx-border-radius: 20;">
+               <children>
+                  <Label fx:id="accountNumber" layoutX="9.0" layoutY="12.0" prefHeight="17.0" prefWidth="186.0" text="LV29HABA1234567891234" textFill="WHITE">
+                     <font>
+                        <Font name="Montserrat SemiBold" size="12.0" />
+                     </font></Label>
+               </children></Pane>
+            <VBox layoutX="10.0" layoutY="255.0" prefHeight="162.0" prefWidth="177.0">
+               <children>
+                  <Pane id="navDashboardContainer" fx:id="navDashboardContainer" prefHeight="56.0" prefWidth="210.0">
+                     <children>
+                        <ImageView fitHeight="18.0" fitWidth="18.0" layoutX="14.0" layoutY="16.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@images/Home.png" />
+                           </image>
+                        </ImageView>
+                        <Label layoutX="41.0" layoutY="17.0" prefHeight="17.0" prefWidth="129.0" text="Dashboard" textFill="WHITE">
+                           <font>
+                              <Font name="Montserrat SemiBold" size="12.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </Pane>
+                  <Pane id="navPaymentContainer" fx:id="navPaymentContainer" prefHeight="56.0" prefWidth="210.0">
+                     <children>
+                        <ImageView fitHeight="18.0" fitWidth="18.0" layoutX="13.0" layoutY="16.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@images/Shopping-cart.png" />
+                           </image>
+                        </ImageView>
+                        <Label layoutX="37.0" layoutY="17.0" prefHeight="17.0" prefWidth="129.0" text="New Payment" textFill="WHITE">
+                           <font>
+                              <Font name="Montserrat SemiBold" size="12.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </Pane>
+                  <Pane id="navVaBankContainer" fx:id="navVaBankContainer" prefHeight="56.0" prefWidth="210.0">
+                     <children>
+                        <ImageView fitHeight="18.0" fitWidth="18.0" layoutX="11.0" layoutY="18.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@images/Icon.png" />
+                           </image>
+                        </ImageView>
+                        <Label layoutX="37.0" layoutY="16.0" prefHeight="17.0" prefWidth="129.0" text="Va Bank" textFill="WHITE">
+                           <font>
+                              <Font name="Montserrat SemiBold" size="12.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </Pane>
+               </children>
+            </VBox>
+         </children>
+      </Pane>
+      <StackPane fx:id="stackPaneContainer" layoutX="217.0" layoutY="1.0" prefHeight="802.0" prefWidth="1063.0" />
    </children>
 </AnchorPane>

@@ -16,6 +16,7 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
+import models.User;
 import services.Database;
 
 public class Login {
@@ -47,6 +48,8 @@ public class Login {
             Parent root = FXMLLoader.load(getClass().getResource("/registration.fxml"));
             stage = (Stage)((Node)event.getSource()).getScene().getWindow();
             scene = new Scene(root);
+            scene.getStylesheets().clear();
+            scene.getStylesheets().add(getClass().getResource("/styles/style.css").toExternalForm());
             stage.setScene(scene);
             stage.show();
         } catch (IOException e) {}
@@ -60,10 +63,18 @@ public class Login {
                 root = loader.load();
 
                 Dashboard dashboardController = loader.getController();
-                dashboardController.setHelloUsername(this.usernameField.getText());
-
+                dashboardController.setNameAndLastName(database.getFirstNameAndLastName(this.usernameField.getText()));
+                dashboardController.setHelloUsername(usernameField.getText());
+                dashboardController.setAccountNumber(database.getAccountNumber(usernameField.getText()));
+                dashboardController.setStackPane(database.getUserByUsername(usernameField.getText()));
                 stage = (Stage)((Node) event.getSource()).getScene().getWindow();
+                stage.setWidth(1280);
+                stage.setHeight(720);
+                stage.setResizable(false);
+                stage.centerOnScreen();
                 scene = new Scene(root);
+                scene.getStylesheets().clear();
+                scene.getStylesheets().add(getClass().getResource("/styles/style.css").toExternalForm());
                 stage.setScene(scene);
                 stage.show();
             }
