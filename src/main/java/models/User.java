@@ -9,6 +9,7 @@ public class User {
     private String name;
     private String surname;
     private double balance;
+    private String accountNumber;
 
     public User(String username, String password, String name, String surname) {
         this.username = username;
@@ -16,6 +17,7 @@ public class User {
         this.name = name;
         this.surname = surname;
         this.balance = 1000.0;
+        this.accountNumber = AccountNumber.accountNumberGenerator();
         List<Transaction> transactions = new ArrayList<>();
     }
 
@@ -43,6 +45,10 @@ public class User {
 
     public String getPassword(){
         return password;
+    }
+
+    public String getAccountNumber(String username){
+        return accountNumber;
     }
 
     public String getName() { return name; }

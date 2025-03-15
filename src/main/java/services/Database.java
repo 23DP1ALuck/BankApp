@@ -66,6 +66,15 @@ public class Database {
         }
         return null;
     }
+    public String getAccountNumber(String username){
+        jsonLoader();
+        for (User user : users) {
+            if(user.getUsername().equals(username)){
+                return user.getAccountNumber(username);
+            }
+        }
+        return null;
+    }
 //    Function, which loads users from json
     public void jsonLoader() {
         try(FileReader fr = new FileReader(filePath)){

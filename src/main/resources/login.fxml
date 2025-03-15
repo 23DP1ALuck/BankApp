@@ -7,27 +7,32 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="507.0" prefWidth="603.0" style="-fx-background-color: #1E1E1E;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.Login">
     <children>
-        <Button fx:id="loginButton" layoutX="262.0" layoutY="283.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="68.0" style="-fx-background-color: #8E44AD;" text="Login" textFill="WHITE" />
-        <Label layoutX="210.0" layoutY="87.0" text="Welcome!" textFill="WHITE">
-            <font>
-                <Font name="Roboto Regular" size="40.0" />
-            </font>
-        </Label>
-        <TextField fx:id="usernameField" layoutX="221.0" layoutY="204.0" promptText="username" />
-        <PasswordField fx:id="passwordField" layoutX="221.0" layoutY="239.0" promptText="password" />
-        <Label id="switchToRegistration" fx:id="switchToRegistration" layoutX="226.0" layoutY="360.0" text="Don't have an account?" textFill="#c39bd3">
+        <Label id="switchToRegistration" fx:id="switchToRegistration" layoutX="224.0" layoutY="411.0" text="Don't have an account?" textFill="WHITE">
          <font>
             <Font name="Roboto Regular" size="14.0" />
          </font></Label>
-        <Label fx:id="userMessage" alignment="CENTER" layoutY="315.0" prefHeight="17.0" prefWidth="603.0" />
-      <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+        <Label fx:id="userMessage" alignment="CENTER" layoutX="17.0" layoutY="441.0" prefHeight="17.0" prefWidth="603.0" />
+      <ImageView fitHeight="64.0" fitWidth="151.0" layoutX="247.0" layoutY="72.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@images/VAbank.png" />
+            <Image url="@images/VAbankWhite.png" />
          </image>
       </ImageView>
+      <Pane layoutX="196.0" layoutY="164.0" prefHeight="221.0" prefWidth="218.0" style="-fx-background-color: rgba(255, 255, 255, 0.025); -fx-background-radius: 20;">
+         <children>
+              <Button fx:id="loginButton" layoutX="7.0" layoutY="159.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="207.0" style="-fx-background-color: #FFFFFF; -fx-text-fill: BLACK; -fx-background-radius: 12;" text="Login" textFill="WHITE" />
+              <TextField fx:id="usernameField" layoutX="13.0" layoutY="50.0" prefHeight="29.0" prefWidth="196.0" promptText="Username" style="-fx-background-color: rgba(255, 255, 255, 0.025); -fx-text-fill: #FFFFFF;" />
+              <PasswordField fx:id="passwordField" layoutX="13.0" layoutY="98.0" prefHeight="29.0" prefWidth="196.0" promptText="Password" style="-fx-background-color: rgba(255, 255, 255, 0.025); -fx-text-fill: #FFFFFF;" />
+            <Label layoutX="17.0" layoutY="15.0" prefHeight="22.0" prefWidth="193.0" text="Login to your account" textFill="WHITE">
+               <font>
+                  <Font size="17.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
     </children>
 </AnchorPane>

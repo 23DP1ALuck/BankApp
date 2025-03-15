@@ -1,9 +1,18 @@
 [
   {
+    "username": "marat",
+    "password": "marat228",
+    "name": "Marats",
+    "surname": "Razživins",
+    "balance": 1000.0,
+    "accountNumber": "LV29HABA3688476812176"
+  },
+  {
     "username": "luckijartem",
-    "password": "qwerty21",
+    "password": "QWerty21",
     "name": "Artjoms",
     "surname": "Luckis",
-    "balance": 1000.0
+    "balance": 1000.0,
+    "accountNumber": "LV29HABA9937807036874"
   }
 ]
