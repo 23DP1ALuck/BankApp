@@ -1,10 +1,18 @@
 package org.example;
 
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.StackPane;
+import models.User;
 import services.Database;
 
+import java.io.IOException;
+
 public class Dashboard {
+    @FXML
+    StackPane stackPaneContainer;
     @FXML
     Label accountNumber;
     @FXML
@@ -19,5 +27,15 @@ public class Dashboard {
     }
     public void setAccountNumber(String name) {
         this.accountNumber.setText(name);
+    }
+    public void setStackPane(User user) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/dashboardStack.fxml"));
+        AnchorPane newContent = loader.load();
+
+        DashboardStack dashboardStackContainer = loader.getController();
+        dashboardStackContainer.setUser(user);
+
+        stackPaneContainer.getChildren().setAll(newContent);
+
     }
 }

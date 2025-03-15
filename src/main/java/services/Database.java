@@ -75,6 +75,15 @@ public class Database {
         }
         return null;
     }
+    public User getUserByUsername(String username){
+        jsonLoader();
+        for (User user : users) {
+            if(user.getUsername().equals(username)){
+                return user;
+            }
+        }
+        return null;
+    }
 //    Function, which loads users from json
     public void jsonLoader() {
         try(FileReader fr = new FileReader(filePath)){
