@@ -80,6 +80,7 @@ public class Login {
             }
         } catch (FieldsAreBlankException | NoSuchUserException | IncorrectPassException |  IOException e){
             userMessage.setText(e.getMessage());
+            userMessage.setStyle("-fx-background-color: rgba(255, 65, 65, 0.1); -fx-text-fill: #FF4141; -fx-background-radius: 12.5; -fx-border-color: rgba(255, 65, 65, 0.2); -fx-border-radius: 12.5");
         }
     }
 

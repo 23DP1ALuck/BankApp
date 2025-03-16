@@ -4,6 +4,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import models.User;
 import services.Database;
@@ -19,6 +20,8 @@ public class Dashboard {
     Label username;
     @FXML
     Label nameAndLastName;
+    @FXML
+    Pane navDashboardContainer;
     public void setHelloUsername(String usersname) {
         username.setText("@"+usersname);
     }
@@ -36,6 +39,7 @@ public class Dashboard {
         dashboardStackContainer.setUser(user);
 
         stackPaneContainer.getChildren().setAll(newContent);
-
+        navDashboardContainer.setStyle("-fx-background-color: rgba(255,255,255,0.2); -fx-background-radius: 12.5");
     }
+
 }

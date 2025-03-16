@@ -16,6 +16,8 @@ public class DashboardStack {
     }
 
     public void setBalanceValue(){
-        balance.setText(currentUser.getBalance() + "€");
+        if (currentUser != null) {
+            balance.setText(currentUser.getBalance() + "€");
+        }
     }
 }
