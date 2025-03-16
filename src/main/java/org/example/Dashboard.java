@@ -25,11 +25,9 @@ public class Dashboard {
     public void setHelloUsername(String usersname) {
         username.setText("@"+usersname);
     }
-    public void setNameAndLastName(String name) {
-        nameAndLastName.setText(name);
-    }
-    public void setAccountNumber(String name) {
-        this.accountNumber.setText(name);
+    public void setNameAndLastName(String name, String surname) { nameAndLastName.setText(name + " " + surname); }
+    public void setAccountNumber(String accountNum) {
+        accountNumber.setText(accountNum);
     }
     public void setStackPane(User user) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/dashboardStack.fxml"));
