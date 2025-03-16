@@ -70,7 +70,7 @@ public class Database {
         jsonLoader();
         for (User user : users) {
             if(user.getUsername().equals(username)){
-                return user.getAccountNumber(username);
+                return user.getAccountNumber();
             }
         }
         return null;

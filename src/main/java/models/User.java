@@ -47,7 +47,7 @@ public class User {
         return password;
     }
 
-    public String getAccountNumber(String username){
+    public String getAccountNumber(){
         return accountNumber;
     }
 
