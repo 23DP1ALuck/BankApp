@@ -1,5 +1,7 @@
 package models;
 
+import Exceptions.CannotTopUpException;
+import Exceptions.CannotWithdrawException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,6 +12,7 @@ public class User {
     private String surname;
     private double balance;
     private String accountNumber;
+    private List<Transaction> transactions;
 
     public User(String username, String password, String name, String surname) {
         this.username = username;
@@ -18,7 +21,7 @@ public class User {
         this.surname = surname;
         this.balance = 1000.0;
         this.accountNumber = AccountNumber.accountNumberGenerator();
-        List<Transaction> transactions = new ArrayList<>();
+        this.transactions = new ArrayList<>();
     }
 
     public void setUsername(String username) {
@@ -56,4 +59,26 @@ public class User {
     public String getSurname() { return surname; }
 
     public Double getBalance() { return balance; }
+
+    public void performTransaction(Transaction transaction) throws CannotTopUpException {
+        switch (transaction.type) {
+            case ADDTOBALANCE -> {
+                if (transaction.amount > 0) {
+                    setBalance(this.balance + transaction.amount);
+                    System.out.println("balance topped by " + transaction.amount);
+                } else throw new CannotTopUpException();
+            }
+            case WITHDRAWAL -> {
+                if (transaction.amount > 0) {
+                    if (this.balance > transaction.amount) {
+                        setBalance(this.balance - transaction.amount);
+                        System.out.println("from balance withdrawn " + transaction.amount);
+                    } else throw new CannotWithdrawException();
+                } else throw new CannotWithdrawException();
+            }
+//            case TRANSFER -> {
+//            }
+        }
+        transactions.add(transaction);
+    }
 }
