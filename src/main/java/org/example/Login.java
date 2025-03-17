@@ -67,7 +67,8 @@ public class Login {
             dashboardController.setNameAndLastName(user.getName(), user.getSurname());
             dashboardController.setHelloUsername(user.getUsername());
             dashboardController.setAccountNumber(user.getAccountNumber());
-            dashboardController.setStackPane(user);
+            dashboardController.setUser(user);
+            dashboardController.loadStackPane("dashboard");
 
             stage = (Stage)((Node) event.getSource()).getScene().getWindow();
             stage.setWidth(1280);
