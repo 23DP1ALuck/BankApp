@@ -1,6 +1,6 @@
 package org.example;
 
-import Exceptions.CannotTopUpException;
+import Exceptions.NotPositiveAmountException;
 import Exceptions.CannotWithdrawException;
 import Exceptions.TypeOrFieldsNotSetException;
 import enums.TransactionType;
@@ -18,6 +18,7 @@ import models.User;
 import services.Database;
 
 import javax.xml.stream.EventFilter;
+import java.math.BigDecimal;
 
 public class PaymentStack {
     private Database db = Database.getInstance();
@@ -50,7 +51,7 @@ public class PaymentStack {
             }
             String c = event.getCharacter(); // Receives input
 
-            // Allows numbers  dot
+            // Allows numbers and dot
             if (!c.matches("[0-9.]") || (c.equals(".") && amountField.getText().contains("."))) {
                 event.consume(); // blocks input
             }
@@ -80,7 +81,7 @@ public class PaymentStack {
         else type = null;
 
         if (type != null && !amountField.getText().isBlank()) {
-            int amount = Integer.parseInt(amountField.getText());
+            BigDecimal amount = new BigDecimal(amountField.getText());
             return new Transaction(amount, type);
         } else throw new TypeOrFieldsNotSetException();
     }
@@ -89,7 +90,7 @@ public class PaymentStack {
         try {
             Transaction transaction = createTransaction();
             currentUser.performTransaction(transaction);
-        } catch (CannotTopUpException | CannotWithdrawException | TypeOrFieldsNotSetException e) {
+        } catch (NotPositiveAmountException | CannotWithdrawException | TypeOrFieldsNotSetException e) {
             userMessage.setText(e.getMessage());
             userMessage.setStyle("-fx-background-color: rgba(255, 65, 65, 0.1); -fx-text-fill: #FF4141; -fx-background-radius: 12.5; -fx-border-color: rgba(255, 65, 65, 0.2); -fx-border-radius: 12.5");
         }

@@ -2,12 +2,13 @@ package models;
 
 import enums.TransactionType;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 
 
 public class Transaction {
 //    public int id;
-    public int amount;
+    public BigDecimal amount;
     TransactionType type;
 //    LocalDate date;
 
@@ -16,7 +17,7 @@ public class Transaction {
 //        this.amount = amount;
 //        this.type = type;
 //    }
-    public Transaction(int amount, TransactionType type) {
+    public Transaction(BigDecimal amount, TransactionType type) {
         this.amount = amount;
         this.type = type;
 //        this.date = LocalDate.now();
