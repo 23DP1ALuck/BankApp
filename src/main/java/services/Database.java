@@ -44,12 +44,12 @@ public class Database {
         }
     }
 
-    public boolean checkUser(String login, String password) throws NoSuchUserException{
+    public User checkUser(String login, String password) throws NoSuchUserException{
         jsonLoader();
         for (User user : users) {
             if(user.getUsername().equals(login)){
                 if(user.getPassword().equals(password)){
-                    return true;
+                    return user;
                 } else{
                     throw new IncorrectPassException();
                 }
@@ -57,33 +57,7 @@ public class Database {
         }
         throw new NoSuchUserException();
     }
-    public String getFirstNameAndLastName(String username){
-        jsonLoader();
-        for (User user : users) {
-            if(user.getUsername().equals(username)){
-                return user.getName() + " " + user.getSurname();
-            }
-        }
-        return null;
-    }
-    public String getAccountNumber(String username){
-        jsonLoader();
-        for (User user : users) {
-            if(user.getUsername().equals(username)){
-                return user.getAccountNumber();
-            }
-        }
-        return null;
-    }
-    public User getUserByUsername(String username){
-        jsonLoader();
-        for (User user : users) {
-            if(user.getUsername().equals(username)){
-                return user;
-            }
-        }
-        return null;
-    }
+
 //    Function, which loads users from json
     public void jsonLoader() {
         try(FileReader fr = new FileReader(filePath)){

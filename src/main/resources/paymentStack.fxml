@@ -9,9 +9,9 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="802.0" prefWidth="1063.0" style="-fx-background-color: #1E1E1E;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.DashboardStack">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="802.0" prefWidth="1063.0" style="-fx-background-color: #1E1E1E;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.PaymentStack">
     <children>
-        <Pane layoutX="234.0" layoutY="175.0" prefHeight="453.0" prefWidth="591.0" style="-fx-background-color: rgba(255,255,255,0.05); -fx-background-radius: 20;">
+        <Pane layoutX="236.0" layoutY="118.0" prefHeight="453.0" prefWidth="591.0" style="-fx-background-color: rgba(255,255,255,0.05); -fx-background-radius: 20;">
             <children>
                 <Label fx:id="balance" alignment="CENTER" layoutX="-2.0" layoutY="32.0" prefHeight="34.0" prefWidth="593.0" text="New Payment" textFill="WHITE">
                     <font>
@@ -30,6 +30,6 @@
             <Button fx:id="completeButton" layoutX="238.0" layoutY="358.0" mnemonicParsing="false" prefHeight="57.0" prefWidth="116.0" style="-fx-background-color: #FFFFFF; -fx-text-fill: BLACK; -fx-background-radius: 12;" text="Complete" />
             </children>
         </Pane>
-      <Label layoutX="515.0" layoutY="113.0" text="Error!" />
+      <Label fx:id="userMessage" alignment="CENTER" layoutX="382.0" layoutY="53.0" prefHeight="39.0" prefWidth="300.0" />
     </children>
 </AnchorPane>

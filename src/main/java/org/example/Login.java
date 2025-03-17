@@ -58,26 +58,28 @@ public class Login {
     // action on login button
     private void loginButtonHandler(ActionEvent event){
         try {
-            if (signIn()) {
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/dashboard.fxml"));
-                root = loader.load();
+            User user = signIn();
 
-                Dashboard dashboardController = loader.getController();
-                dashboardController.setNameAndLastName(database.getFirstNameAndLastName(this.usernameField.getText()));
-                dashboardController.setHelloUsername(usernameField.getText());
-                dashboardController.setAccountNumber(database.getAccountNumber(usernameField.getText()));
-                dashboardController.setStackPane(database.getUserByUsername(usernameField.getText()));
-                stage = (Stage)((Node) event.getSource()).getScene().getWindow();
-                stage.setWidth(1280);
-                stage.setHeight(720);
-                stage.setResizable(false);
-                stage.centerOnScreen();
-                scene = new Scene(root);
-                scene.getStylesheets().clear();
-                scene.getStylesheets().add(getClass().getResource("/styles/style.css").toExternalForm());
-                stage.setScene(scene);
-                stage.show();
-            }
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/dashboard.fxml"));
+            root = loader.load();
+
+            Dashboard dashboardController = loader.getController();
+            dashboardController.setNameAndLastName(user.getName(), user.getSurname());
+            dashboardController.setHelloUsername(user.getUsername());
+            dashboardController.setAccountNumber(user.getAccountNumber());
+            dashboardController.setUser(user);
+            dashboardController.loadStackPane("dashboard");
+
+            stage = (Stage)((Node) event.getSource()).getScene().getWindow();
+            stage.setWidth(1280);
+            stage.setHeight(720);
+            stage.setResizable(false);
+            stage.centerOnScreen();
+            scene = new Scene(root);
+            scene.getStylesheets().clear();
+            scene.getStylesheets().add(getClass().getResource("/styles/style.css").toExternalForm());
+            stage.setScene(scene);
+            stage.show();
         } catch (FieldsAreBlankException | NoSuchUserException | IncorrectPassException |  IOException e){
             userMessage.setText(e.getMessage());
             userMessage.setStyle("-fx-background-color: rgba(255, 65, 65, 0.1); -fx-text-fill: #FF4141; -fx-background-radius: 12.5; -fx-border-color: rgba(255, 65, 65, 0.2); -fx-border-radius: 12.5");
@@ -87,7 +89,7 @@ public class Login {
     Database database = Database.getInstance();
 
     // sign in func
-    private boolean signIn() throws FieldsAreBlankException, NoSuchUserException {
+    private User signIn() throws FieldsAreBlankException, NoSuchUserException {
         userMessage.setText("");
         checkIfBlankInLogin();
         String login = this.usernameField.getText();
