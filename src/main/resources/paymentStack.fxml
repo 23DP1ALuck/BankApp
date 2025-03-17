@@ -30,6 +30,6 @@
             <Button fx:id="completeButton" layoutX="238.0" layoutY="358.0" mnemonicParsing="false" prefHeight="57.0" prefWidth="116.0" style="-fx-background-color: #FFFFFF; -fx-text-fill: BLACK; -fx-background-radius: 12;" text="Complete" />
             </children>
         </Pane>
-      <Label fx:id="userMessage" alignment="CENTER" layoutX="421.0" layoutY="47.0" prefHeight="17.0" prefWidth="221.0" />
+      <Label fx:id="userMessage" alignment="CENTER" layoutX="382.0" layoutY="53.0" prefHeight="39.0" prefWidth="300.0" />
     </children>
 </AnchorPane>
