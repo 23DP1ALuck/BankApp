@@ -42,6 +42,16 @@ public class Registration {
         // button action listeners
         switchToLogin.setOnMouseClicked(this::switchToLogin);
         signUpButton.setOnAction(this::signUpButtonHandler);
+
+        // hides userMessage if something is typed
+        usernameField.textProperty().addListener((observable, oldValue, newValue) -> {
+            userMessage.setVisible(false);
+        });
+        passwordField.textProperty().addListener((observable, oldValue, newValue) -> {
+            userMessage.setVisible(false);
+        });
+        // hides userMessage by default
+        userMessage.setVisible(false);
     }
 
     // action on sign up button
@@ -58,7 +68,7 @@ public class Registration {
             }
         } catch (UserExistsException | FieldsAreBlankException | IOException e){
             userMessage.setText(e.getMessage());
-            userMessage.setStyle("-fx-background-color: rgba(255, 65, 65, 0.1); -fx-text-fill: #FF4141; -fx-background-radius: 12.5; -fx-border-color: rgba(255, 65, 65, 0.2); -fx-border-radius: 12.5");
+            userMessage.setVisible(true);
         }
     }
 

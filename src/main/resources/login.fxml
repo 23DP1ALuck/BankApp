@@ -16,7 +16,7 @@
          <font>
             <Font name="Montserrat SemiBold" size="14.0" />
          </font></Label>
-        <Label fx:id="userMessage" alignment="CENTER" contentDisplay="CENTER" layoutX="137.0" layoutY="439.0" prefHeight="39.0" prefWidth="332.0" />
+        <Label fx:id="userMessage" alignment="CENTER" contentDisplay="CENTER" layoutX="137.0" layoutY="439.0" prefHeight="39.0" prefWidth="332.0" styleClass="error" />
       <ImageView fitHeight="64.0" fitWidth="151.0" layoutX="247.0" layoutY="72.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@images/VAbankWhite.png" />
