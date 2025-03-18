@@ -1,5 +1,6 @@
 package services;
 
+import Exceptions.IncorrectAccountNumber;
 import Exceptions.IncorrectPassException;
 import Exceptions.NoSuchUserException;
 import Exceptions.UserExistsException;
@@ -11,6 +12,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -57,18 +59,48 @@ public class Database {
         }
         throw new NoSuchUserException();
     }
-
+    public User checkAccNumber(String accNumber){
+        jsonLoader();
+        for (User user : users) {
+            if(user.getAccountNumber().equals(accNumber)){
+                return user;
+            }
+        }
+        throw new IncorrectAccountNumber();
+    }
 //    Function, which loads users from json
     public void jsonLoader() {
-        try(FileReader fr = new FileReader(filePath)){
+        try (FileReader fr = new FileReader(filePath)) {
             User[] readedUsers = gson.fromJson(fr, User[].class);
-            if(readedUsers != null){
+            if (readedUsers != null) {
 //                add to users already created users, which were saved to json
                 users = new ArrayList<>(List.of(readedUsers));
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
-
+    }
+    public void saveToJson(User TransactonMaker) throws IOException {
+        jsonLoader();
+        for (int i = 0; i < users.size(); i++) {
+            if(users.get(i).getUsername().equals(TransactonMaker.getUsername())){
+                users.set(i, TransactonMaker);
+                break;
+            }
+        }
+        try(FileWriter fw = new FileWriter(filePath)) {
+            gson.toJson(users, fw);
+        }
+    }
+    public BigDecimal getUserBalance(User getUserBalance){
+        return getUserBalance.getBalance();
+    }
+    public User getUserFromAccNumber(String accNumber){
+        for (User user : users) {
+            if(user.getAccountNumber().equals(accNumber)){
+                return user;
+            }
+        }
+        return null;
     }
 }

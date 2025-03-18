@@ -4,8 +4,59 @@
     "password": "a",
     "name": "a",
     "surname": "a",
-    "balance": 1000.0,
+    "balance": 319.0,
     "accountNumber": "LV29HABA2861803807768",
-    "transactions": []
+    "transactions": [
+      {
+        "amount": 30,
+        "type": "WITHDRAWAL"
+      },
+      {
+        "amount": 100,
+        "type": "ADDTOBALANCE"
+      },
+      {
+        "amount": 300,
+        "type": "ADDTOBALANCE"
+      },
+      {
+        "amount": 150,
+        "type": "TRANSFER"
+      },
+      {
+        "amount": 123,
+        "type": "ADDTOBALANCE"
+      },
+      {
+        "amount": 100,
+        "type": "TRANSFER"
+      },
+      {
+        "amount": 2,
+        "type": "TRANSFER"
+      }
+    ]
+  },
+  {
+    "username": "b",
+    "password": "b",
+    "name": "b",
+    "surname": "b",
+    "balance": 1020.0,
+    "accountNumber": "LV29HABA2209353308423",
+    "transactions": [
+      {
+        "amount": 150,
+        "type": "TRANSFER"
+      },
+      {
+        "amount": 100,
+        "type": "TRANSFER"
+      },
+      {
+        "amount": 2,
+        "type": "TRANSFER"
+      }
+    ]
   }
 ]
