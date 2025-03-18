@@ -2,6 +2,7 @@ package models;
 
 import Exceptions.NotPositiveAmountException;
 import Exceptions.CannotWithdrawException;
+import services.Database;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -15,7 +16,6 @@ public class User {
     private BigDecimal balance;
     private String accountNumber;
     private List<Transaction> transactions;
-
     public User(String username, String password, String name, String surname) {
         this.username = username;
         this.password = password;
@@ -43,7 +43,7 @@ public class User {
     }
 
     public void setBalance(BigDecimal balance) { this.balance = balance; }
-
+    
     public String getUsername() {
         return username;
     }
@@ -62,6 +62,8 @@ public class User {
 
     public BigDecimal getBalance() { return balance; }
 
+    public List<Transaction> getTransations() { return transactions; }
+
     public void performTransaction(Transaction transaction) throws NotPositiveAmountException {
         if (transaction.amount.compareTo(BigDecimal.ZERO) > 0) {
             switch (transaction.type) {
@@ -75,10 +77,20 @@ public class User {
                         System.out.println("from balance withdrawn " + transaction.amount);
                     } else throw new CannotWithdrawException();
                 }
-//            case TRANSFER -> {
-//            }
             }
         } else throw new NotPositiveAmountException();
         transactions.add(transaction);
+    }
+
+    public void performTransaction(Transaction transaction, User recipient) {
+        if (transaction.amount.compareTo(BigDecimal.ZERO) > 0){
+            if(this.balance.compareTo(transaction.amount) > 0) {
+                setBalance(this.balance.subtract(transaction.amount));
+                recipient.setBalance(recipient.getBalance().add(transaction.amount));
+                transactions.add(transaction);
+                recipient.transactions.add(transaction);
+            }
+        }
+
     }
 }

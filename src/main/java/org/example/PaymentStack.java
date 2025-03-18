@@ -1,5 +1,6 @@
 package org.example;
 
+import Exceptions.IncorrectAccountNumber;
 import Exceptions.NotPositiveAmountException;
 import Exceptions.CannotWithdrawException;
 import Exceptions.TypeOrFieldsNotSetException;
@@ -18,6 +19,7 @@ import models.User;
 import services.Database;
 
 import javax.xml.stream.EventFilter;
+import java.io.IOException;
 import java.math.BigDecimal;
 
 public class PaymentStack {
@@ -89,10 +91,22 @@ public class PaymentStack {
     public void completeTransaction(ActionEvent event) {
         try {
             Transaction transaction = createTransaction();
-            currentUser.performTransaction(transaction);
-        } catch (NotPositiveAmountException | CannotWithdrawException | TypeOrFieldsNotSetException e) {
+            if(addMoneyButton.isSelected() || withdrawButton.isSelected()) {
+                currentUser.performTransaction(transaction);
+                db.saveToJson(currentUser);
+            } else if (transferButton.isSelected()) {
+                db.checkAccNumber(accNumField.getText());
+                currentUser.performTransaction(transaction, db.getUserFromAccNumber(accNumField.getText()));
+                User recipient = db.getUserFromAccNumber(accNumField.getText());
+                db.saveToJson(currentUser);
+                db.saveToJson(recipient);
+            }
+        } catch (NotPositiveAmountException | CannotWithdrawException | TypeOrFieldsNotSetException |
+                 IncorrectAccountNumber e) {
             userMessage.setText(e.getMessage());
             userMessage.setStyle("-fx-background-color: rgba(255, 65, 65, 0.1); -fx-text-fill: #FF4141; -fx-background-radius: 12.5; -fx-border-color: rgba(255, 65, 65, 0.2); -fx-border-radius: 12.5");
+        } catch (IOException e) {
+            throw new RuntimeException(e);
         }
     }
 }
