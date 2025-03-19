@@ -59,15 +59,7 @@ public class Database {
         }
         throw new NoSuchUserException();
     }
-    public User checkAccNumber(String accNumber){
-        jsonLoader();
-        for (User user : users) {
-            if(user.getAccountNumber().equals(accNumber)){
-                return user;
-            }
-        }
-        throw new IncorrectAccountNumber();
-    }
+
 //    Function, which loads users from json
     public void jsonLoader() {
         try (FileReader fr = new FileReader(filePath)) {

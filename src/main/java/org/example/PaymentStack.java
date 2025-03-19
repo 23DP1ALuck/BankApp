@@ -107,9 +107,8 @@ public class PaymentStack {
                 currentUser.performTransaction(transaction);
                 db.saveToJson(currentUser);
             } else if (transferButton.isSelected()) {
-                db.checkAccNumber(accNumField.getText());
-                currentUser.performTransaction(transaction, db.getUserFromAccNumber(accNumField.getText()));
                 User recipient = db.getUserFromAccNumber(accNumField.getText());
+                currentUser.performTransaction(transaction, db.getUserFromAccNumber(accNumField.getText()));
                 db.saveToJson(currentUser);
                 db.saveToJson(recipient);
             }
