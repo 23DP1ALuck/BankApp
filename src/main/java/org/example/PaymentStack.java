@@ -41,6 +41,7 @@ public class PaymentStack {
 
     @FXML
     private void initialize() {
+        // button action listeners
         completeButton.setOnAction(this::completeTransaction);
         addMoneyButton.setOnAction(this::radioChoice);
         withdrawButton.setOnAction(this::radioChoice);
@@ -58,6 +59,16 @@ public class PaymentStack {
                 event.consume(); // blocks input
             }
         });
+
+        // hides userMessage if something is typed
+        amountField.textProperty().addListener((observable, oldValue, newValue) -> {
+            userMessage.setVisible(false);
+        });
+        accNumField.textProperty().addListener((observable, oldValue, newValue) -> {
+            userMessage.setVisible(false);
+        });
+        // hides userMessage by default
+        userMessage.setVisible(false);
     }
 
     public void setUser(User user) {
@@ -66,6 +77,7 @@ public class PaymentStack {
     }
 
     public void radioChoice(ActionEvent event) {
+        userMessage.setVisible(false);
         accNumField.setDisable(!type.getSelectedToggle().equals(transferButton));
     }
 
@@ -104,7 +116,7 @@ public class PaymentStack {
         } catch (NotPositiveAmountException | CannotWithdrawException | TypeOrFieldsNotSetException |
                  IncorrectAccountNumber e) {
             userMessage.setText(e.getMessage());
-            userMessage.setStyle("-fx-background-color: rgba(255, 65, 65, 0.1); -fx-text-fill: #FF4141; -fx-background-radius: 12.5; -fx-border-color: rgba(255, 65, 65, 0.2); -fx-border-radius: 12.5");
+            userMessage.setVisible(true);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

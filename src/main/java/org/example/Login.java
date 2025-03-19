@@ -40,6 +40,16 @@ public class Login {
         // button action listeners
         switchToRegistration.setOnMouseClicked(this::switchToRegistration);
         loginButton.setOnAction(this::loginButtonHandler);
+
+        // hides userMessage if something is typed
+        usernameField.textProperty().addListener((observable, oldValue, newValue) -> {
+            userMessage.setVisible(false);
+        });
+        passwordField.textProperty().addListener((observable, oldValue, newValue) -> {
+            userMessage.setVisible(false);
+        });
+        // hides userMessage by default
+        userMessage.setVisible(false);
     }
 
     // switch to registration scene
@@ -82,7 +92,7 @@ public class Login {
             stage.show();
         } catch (FieldsAreBlankException | NoSuchUserException | IncorrectPassException |  IOException e){
             userMessage.setText(e.getMessage());
-            userMessage.setStyle("-fx-background-color: rgba(255, 65, 65, 0.1); -fx-text-fill: #FF4141; -fx-background-radius: 12.5; -fx-border-color: rgba(255, 65, 65, 0.2); -fx-border-radius: 12.5");
+            userMessage.setVisible(true);
         }
     }
 
