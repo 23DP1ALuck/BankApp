@@ -1,7 +1,9 @@
 package models;
 
+import Exceptions.IncorrectAccountNumber;
 import Exceptions.NotPositiveAmountException;
 import Exceptions.CannotWithdrawException;
+import enums.TransactionType;
 import services.Database;
 
 import java.math.BigDecimal;
@@ -21,7 +23,7 @@ public class User {
         this.password = password;
         this.name = name;
         this.surname = surname;
-        this.balance = BigDecimal.valueOf(1000.0);
+        this.balance = new BigDecimal(1000).setScale(2);
         this.accountNumber = AccountNumber.accountNumberGenerator();
         this.transactions = new ArrayList<>();
     }
@@ -62,10 +64,10 @@ public class User {
 
     public BigDecimal getBalance() { return balance; }
 
-    public List<Transaction> getTransations() { return transactions; }
+    public List<Transaction> getTransactions() { return transactions; }
 
     public void performTransaction(Transaction transaction) throws NotPositiveAmountException {
-        if (transaction.amount.compareTo(BigDecimal.ZERO) > 0) {
+        if (transaction.amount.compareTo(BigDecimal.ZERO) >= 0) {
             switch (transaction.type) {
                 case ADDTOBALANCE -> {
                     setBalance(this.balance.add(transaction.amount));
@@ -73,9 +75,10 @@ public class User {
                 }
                 case WITHDRAWAL -> {
                     if (this.balance.compareTo(transaction.amount) > 0) {
-                        setBalance(this.balance.subtract(transaction.amount));
+                        transaction.amount = transaction.amount.negate();
+                        setBalance(this.balance.add(transaction.amount));
                         System.out.println("from balance withdrawn " + transaction.amount);
-                    } else throw new CannotWithdrawException();
+                    } else throw new CannotWithdrawException("withdrawal");
                 }
             }
         } else throw new NotPositiveAmountException();
@@ -84,13 +87,20 @@ public class User {
 
     public void performTransaction(Transaction transaction, User recipient) {
         if (transaction.amount.compareTo(BigDecimal.ZERO) > 0){
-            if(this.balance.compareTo(transaction.amount) > 0) {
-                setBalance(this.balance.subtract(transaction.amount));
-                recipient.setBalance(recipient.getBalance().add(transaction.amount));
+            if(this.balance.compareTo(transaction.amount) >= 0) {
+                transaction.amount = transaction.amount.negate();
+                setBalance(this.balance.add(transaction.amount));
+                try{
+                    recipient.setBalance(recipient.getBalance().add(transaction.amount.negate()));
+                }catch (NullPointerException e){
+                    throw new IncorrectAccountNumber();
+                }
                 transactions.add(transaction);
-                recipient.transactions.add(transaction);
+                Transaction recipientTransaction =  new Transaction(transaction.amount.negate(), transaction.type);
+                recipient.transactions.add(recipientTransaction);
+            } else {
+                throw new CannotWithdrawException("transfer.");
             }
         }
-
     }
 }

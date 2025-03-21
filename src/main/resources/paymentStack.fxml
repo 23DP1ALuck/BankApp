@@ -22,12 +22,30 @@
                <toggleGroup>
                   <ToggleGroup fx:id="type" />
                </toggleGroup>
+               <font>
+                  <Font name="Montserrat SemiBold" size="12.0" />
+               </font>
             </RadioButton>
-            <RadioButton fx:id="withdrawButton" layoutX="260.0" layoutY="112.0" mnemonicParsing="false" text="Withdraw" textFill="WHITE" toggleGroup="$type" />
-            <RadioButton fx:id="transferButton" layoutX="436.0" layoutY="112.0" mnemonicParsing="false" text="Transfer" textFill="WHITE" toggleGroup="$type" />
-            <TextField fx:id="accNumField" layoutX="77.0" layoutY="169.0" prefHeight="67.0" prefWidth="445.0" promptText="Account number" style="-fx-background-color: #1E1E1E; -fx-text-fill: #FFFFFF;" />
-            <TextField fx:id="amountField" layoutX="77.0" layoutY="259.0" prefHeight="67.0" prefWidth="445.0" promptText="Amount" style="-fx-background-color: #1E1E1E; -fx-text-fill: #FFFFFF;" />
-            <Button fx:id="completeButton" layoutX="238.0" layoutY="358.0" mnemonicParsing="false" prefHeight="57.0" prefWidth="116.0" style="-fx-background-color: #FFFFFF; -fx-text-fill: BLACK; -fx-background-radius: 12;" text="Complete" />
+            <RadioButton fx:id="withdrawButton" layoutX="260.0" layoutY="112.0" mnemonicParsing="false" text="Withdraw" textFill="WHITE" toggleGroup="$type">
+               <font>
+                  <Font name="Montserrat SemiBold" size="12.0" />
+               </font></RadioButton>
+            <RadioButton fx:id="transferButton" layoutX="436.0" layoutY="112.0" mnemonicParsing="false" text="Transfer" textFill="WHITE" toggleGroup="$type">
+               <font>
+                  <Font name="Montserrat SemiBold" size="12.0" />
+               </font></RadioButton>
+            <TextField fx:id="accNumField" layoutX="77.0" layoutY="169.0" prefHeight="67.0" prefWidth="445.0" promptText="Account number" style="-fx-background-color: #1E1E1E; -fx-text-fill: #FFFFFF;">
+               <font>
+                  <Font name="Montserrat SemiBold" size="13.0" />
+               </font></TextField>
+            <TextField fx:id="amountField" layoutX="77.0" layoutY="259.0" prefHeight="67.0" prefWidth="445.0" promptText="Amount" style="-fx-background-color: #1E1E1E; -fx-text-fill: #FFFFFF;">
+               <font>
+                  <Font name="Montserrat SemiBold" size="13.0" />
+               </font></TextField>
+            <Button fx:id="completeButton" layoutX="238.0" layoutY="358.0" mnemonicParsing="false" prefHeight="57.0" prefWidth="116.0" style="-fx-background-color: #FFFFFF; -fx-text-fill: BLACK; -fx-background-radius: 12;" text="Complete">
+               <font>
+                  <Font name="Montserrat SemiBold" size="13.0" />
+               </font></Button>
             </children>
         </Pane>
       <Label fx:id="userMessage" alignment="CENTER" layoutX="382.0" layoutY="53.0" prefHeight="39.0" prefWidth="300.0" styleClass="error" />

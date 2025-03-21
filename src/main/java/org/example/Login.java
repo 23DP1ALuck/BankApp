@@ -92,6 +92,7 @@ public class Login {
             stage.show();
         } catch (FieldsAreBlankException | NoSuchUserException | IncorrectPassException |  IOException e){
             userMessage.setText(e.getMessage());
+            e.printStackTrace();
             userMessage.setVisible(true);
         }
     }

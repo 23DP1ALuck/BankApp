@@ -14,7 +14,7 @@
    <children>
       <Pane layoutX="38.0" layoutY="106.0" prefHeight="87.0" prefWidth="987.0" style="-fx-background-color: rgba(255,255,255,0.05); -fx-background-radius: 20;">
          <children>
-            <Label fx:id="balance" layoutX="22.0" layoutY="44.0" prefHeight="34.0" prefWidth="390.0" text="TEST" textFill="WHITE">
+            <Label fx:id="balance" layoutX="22.0" layoutY="44.0" prefHeight="34.0" prefWidth="257.0" text="TEST" textFill="WHITE">
                <font>
                   <Font name="Montserrat SemiBold" size="27.0" />
                </font>
@@ -25,6 +25,27 @@
                </font>
             </Label>
             <Line endX="-100.0" endY="62.0" layoutX="392.0" layoutY="-3.0" startX="-100.0" startY="31.0" stroke="#ffffff33" />
+            <Label layoutX="412.0" layoutY="37.0" text="Money in :" textFill="#ffffffb2">
+               <font>
+                  <Font name="Montserrat SemiBold" size="12.0" />
+               </font>
+            </Label>
+            <Label fx:id="moneyIn" layoutX="484.0" layoutY="27.0" prefHeight="34.0" prefWidth="156.0" text="TEST" textFill="WHITE">
+               <font>
+                  <Font name="Montserrat SemiBold" size="27.0" />
+               </font>
+            </Label>
+            <Line endX="-100.0" endY="62.0" layoutX="764.0" layoutY="-3.0" startX="-100.0" startY="31.0" stroke="#ffffff33" />
+            <Label layoutX="712.0" layoutY="37.0" text="Money out :" textFill="#ffffffb2">
+               <font>
+                  <Font name="Montserrat SemiBold" size="12.0" />
+               </font>
+            </Label>
+            <Label fx:id="moneyOut" layoutX="796.0" layoutY="28.0" prefHeight="34.0" prefWidth="156.0" text="TEST" textFill="WHITE">
+               <font>
+                  <Font name="Montserrat SemiBold" size="27.0" />
+               </font>
+            </Label>
          </children>
       </Pane>
       <Label layoutX="56.0" prefHeight="52.0" prefWidth="238.0" text="Balance" textFill="WHITE">
