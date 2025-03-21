@@ -24,6 +24,13 @@
     -fx-background-color: rgba(255,255,255,0.1);
     -fx-background-radius: 12.5;
 }
+#logOutButton:hover{
+    -fx-background-color: blue;
+    -fx-background-radius: 15;
+}
+#testik:hover{
+    -fx-background-color: blue;
+}
 @font-face {
     font-family: "Montserrat SemiBold";
     src: url("../fonts/Montserrat-SemiBold.ttf")
@@ -36,6 +43,9 @@ TextField{
 }
 PasswordField{
     -fx-font-family: "Montserrat SemiBold";
+}
+#test{
+    -fx-text-fill: blue;
 }
 
 .error {

@@ -22,4 +22,7 @@ public class Transaction {
         this.type = type;
 //        this.date = LocalDate.now();
     }
+    public TransactionType getType() {
+        return type;
+    }
 }

@@ -6,6 +6,8 @@ import Exceptions.NoSuchUserException;
 import Exceptions.UserExistsException;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import enums.TransactionType;
+import models.Transaction;
 import models.User;
 
 import java.io.FileNotFoundException;
@@ -84,8 +86,27 @@ public class Database {
             gson.toJson(users, fw);
         }
     }
-    public BigDecimal getUserBalance(User getUserBalance){
-        return getUserBalance.getBalance();
+    public BigDecimal moneyIn(User user) {
+        BigDecimal totalIn = BigDecimal.ZERO;
+        List<Transaction> transactions = user.getTransactions();
+        for (Transaction transaction : transactions) {
+            if ((transaction.getType() == TransactionType.TRANSFER || transaction.getType() ==
+                    TransactionType.ADDTOBALANCE) && transaction.amount.compareTo(BigDecimal.ZERO) > 0) {
+                totalIn = totalIn.add(transaction.amount);
+            }
+        }
+        return totalIn;
+    }
+    public BigDecimal moneyOut(User user) {
+        BigDecimal totalOut = BigDecimal.ZERO;
+        List<Transaction> transactions = user.getTransactions();
+        for (Transaction transaction : transactions) {
+            if ((transaction.getType() == TransactionType.TRANSFER || transaction.getType() ==
+                    TransactionType.WITHDRAWAL) && transaction.amount.compareTo(BigDecimal.ZERO) < 0) {
+                totalOut = totalOut.add(transaction.amount);
+            }
+        }
+        return totalOut;
     }
     public User getUserFromAccNumber(String accNumber){
         for (User user : users) {

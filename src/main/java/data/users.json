@@ -1,106 +1,111 @@
 [
   {
+    "username": "t0mmyqwe",
+    "password": "Qwerty21",
+    "name": "Artjoms",
+    "surname": "Luckis",
+    "balance": 4000.00,
+    "accountNumber": "LV29HABA2763326627601",
+    "transactions": [
+      {
+        "amount": 300.00,
+        "type": "TRANSFER"
+      },
+      {
+        "amount": 635.00,
+        "type": "TRANSFER"
+      },
+      {
+        "amount": 0.55,
+        "type": "TRANSFER"
+      },
+      {
+        "amount": 0.44,
+        "type": "TRANSFER"
+      },
+      {
+        "amount": 1000.00,
+        "type": "TRANSFER"
+      },
+      {
+        "amount": 999.00,
+        "type": "TRANSFER"
+      },
+      {
+        "amount": 1000.00,
+        "type": "TRANSFER"
+      },
+      {
+        "amount": 2000.00,
+        "type": "TRANSFER"
+      }
+    ]
+  },
+  {
     "username": "a",
     "password": "a",
-    "name": "a",
-    "surname": "a",
-    "balance": 135.0,
-    "accountNumber": "LV29HABA2861803807768",
+    "name": "Test",
+    "surname": "Testov",
+    "balance": 0.00,
+    "accountNumber": "LV29HABA2424246627601",
     "transactions": [
       {
-        "amount": 30,
+        "amount": -300.00,
+        "type": "TRANSFER"
+      },
+      {
+        "amount": -635.00,
+        "type": "TRANSFER"
+      },
+      {
+        "amount": -0.55,
+        "type": "TRANSFER"
+      },
+      {
+        "amount": -0.44,
+        "type": "TRANSFER"
+      },
+      {
+        "amount": 1000.00,
+        "type": "ADDTOBALANCE"
+      },
+      {
+        "amount": -1000.00,
+        "type": "TRANSFER"
+      },
+      {
+        "amount": 1000.00,
+        "type": "ADDTOBALANCE"
+      },
+      {
+        "amount": -0.01,
         "type": "WITHDRAWAL"
       },
       {
-        "amount": 100,
-        "type": "ADDTOBALANCE"
-      },
-      {
-        "amount": 300,
-        "type": "ADDTOBALANCE"
-      },
-      {
-        "amount": 150,
+        "amount": -999.00,
         "type": "TRANSFER"
       },
       {
-        "amount": 123,
-        "type": "ADDTOBALANCE"
-      },
-      {
-        "amount": 100,
+        "amount": -1000.00,
         "type": "TRANSFER"
       },
       {
-        "amount": 400,
+        "amount": 2000.00,
         "type": "ADDTOBALANCE"
       },
       {
-        "amount": 30,
-        "type": "ADDTOBALANCE"
-      }
-    ]
-  },
-  {
-    "username": "b",
-    "password": "b",
-    "name": "b",
-    "surname": "b",
-    "balance": 973.0,
-    "accountNumber": "LV29HABA2209353308423",
-    "transactions": [
-      {
-        "amount": 150,
-        "type": "TRANSFER"
-      },
-      {
-        "amount": 100,
+        "amount": -2000.00,
         "type": "TRANSFER"
       }
     ]
   },
   {
-    "username": "quikse",
-    "password": "a",
-    "name": "Dmitrijs",
-    "surname": "Orlovics",
-    "balance": 2140,
-    "accountNumber": "LV29HABA2719769375525",
-    "transactions": [
-      {
-        "amount": -100,
-        "type": "TRANSFER"
-      },
-      {
-        "amount": 2341,
-        "type": "ADDTOBALANCE"
-      },
-      {
-        "amount": 1000,
-        "type": "TRANSFER"
-      }
-    ]
-  },
-  {
-    "username": "megnis",
-    "password": "nigga",
-    "name": "Edvards",
-    "surname": "Mozga",
-    "balance": 535.9,
-    "accountNumber": "LV29HABA5000130782458",
-    "transactions": [
-      {
-        "amount": 1000,
-        "type": "ADDTOBALANCE"
-      },
-      {
-        "amount": -0.1,
-        "type": "WITHDRAWAL"
-      },
-      {
-        "amount": -1000,
-        "type": "TRANSFER"
-      }
-    ]
+    "username": "marats2006",
+    "password": "maratoni06",
+    "name": "Marats",
+    "surname": "Razživins",
+    "balance": 1000.00,
+    "accountNumber": "LV29HABA7727689278530",
+    "transactions": []
   }
 ]

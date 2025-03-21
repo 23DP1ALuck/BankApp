@@ -2,17 +2,25 @@ package org.example;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
+import javafx.stage.Stage;
 import models.User;
 import services.Database;
 import java.io.IOException;
 
 public class Dashboard {
     private User currentUser;
+    private Stage stage;
+    private Scene scene;
+    private Parent root;
 
     @FXML
     StackPane stackPaneContainer;
@@ -24,12 +32,19 @@ public class Dashboard {
     Label nameAndLastName;
     @FXML
     Pane navDashboardContainer, navPaymentContainer;
+    @FXML
+    Button logOutButton;
 
     @FXML
     private void initialize() {
         // button action listeners
         navDashboardContainer.setOnMouseClicked(this::switchToDashboard);
         navPaymentContainer.setOnMouseClicked(this::switchToPayment);
+        logOutButton.setOnMouseClicked(this::logOut);
+
+//        hover for logout button
+        logOutButton.setOnMouseEntered(e -> logOutButton.setStyle("-fx-background-color:  rgba(255,255,255,0.25);-fx-background-radius: 15;"));
+        logOutButton.setOnMouseExited(e -> logOutButton.setStyle("-fx-background-color:  rgba(255,255,255,0.2);-fx-background-radius: 15;"));
     }
 
     public void setUser(User user) { this.currentUser = user; }
@@ -75,6 +90,20 @@ public class Dashboard {
     public void switchToPayment(MouseEvent event) {
         try {
             loadStackPane("payment");
+        } catch (IOException e) {}
+    }
+    public void logOut(MouseEvent event) {
+        try {
+            Parent root = FXMLLoader.load(getClass().getResource("/login.fxml"));
+            stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+            scene = new Scene(root);
+            stage.setWidth(603);
+            stage.setHeight(550);
+            stage.centerOnScreen();
+            scene.getStylesheets().clear();
+            scene.getStylesheets().add(getClass().getResource("/styles/style.css").toExternalForm());
+            stage.setScene(scene);
+            stage.show();
         } catch (IOException e) {}
     }
 }

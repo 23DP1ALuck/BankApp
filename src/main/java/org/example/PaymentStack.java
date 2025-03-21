@@ -47,16 +47,19 @@ public class PaymentStack {
         withdrawButton.setOnAction(this::radioChoice);
         transferButton.setOnAction(this::radioChoice);
 
-        // blocks to type unwanted symbols (ChatGPT)
+        // blocks to type unwanted symbols
         amountField.addEventFilter(KeyEvent.ANY, event ->{
             if (event.getCode() == KeyCode.BACK_SPACE || event.getCode() == KeyCode.LEFT || event.getCode() == KeyCode.RIGHT) {
                 return; // Allows backspace, left, right arrows
             }
             String c = event.getCharacter(); // Receives input
-
-            // Allows numbers and dot
-            if (!c.matches("[0-9.]") || (c.equals(".") && amountField.getText().contains("."))) {
-                event.consume(); // blocks input
+//            allows only numbers and dot. block if only single dot in input
+            if(!c.matches("[0-9.]") || (c.equals(".") && amountField.getText().contains("."))){
+                event.consume();
+            }
+//            split to two different parts. allows to type only two digits after dot
+            if(amountField.getText().split("\\.").length > 1 && amountField.getText().split("\\.")[1].length() >= 2){
+                event.consume();
             }
         });
 
@@ -94,8 +97,8 @@ public class PaymentStack {
         }
         else type = null;
 
-        if (type != null && !amountField.getText().isBlank()) {
-            BigDecimal amount = new BigDecimal(amountField.getText());
+        if (type != null && !amountField.getText().isBlank() && (accNumField.isDisable() || (!accNumField.isDisable() && !accNumField.getText().isBlank())))  {
+            BigDecimal amount = new BigDecimal(amountField.getText()).setScale(2);
             return new Transaction(amount, type);
         } else throw new TypeOrFieldsNotSetException();
     }
