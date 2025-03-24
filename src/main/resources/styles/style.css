@@ -55,3 +55,24 @@ PasswordField{
     -fx-border-color: rgba(255, 65, 65, 0.2);
     -fx-border-radius: 12.5;
 }
+.activeButton {
+    -fx-background-color: rgba(255, 255, 255, 0.05);
+    -fx-text-fill: rgba(255, 255, 255, 1);
+}
+
+.inactiveButton {
+    -fx-background-color: rgba(255, 255, 255, 0);
+    -fx-text-fill: rgba(255, 255, 255, 0.7);
+}
+
+.activeArrow {
+    -fx-opacity: 1;
+}
+
+.inactiveArrow {
+    -fx-opacity: 0.7;
+}
+
+.arrowDown {
+    -fx-scale-y: -1;
+}
