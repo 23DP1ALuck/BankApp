@@ -46,7 +46,7 @@
     "password": "a",
     "name": "Test",
     "surname": "Testov",
-    "balance": 0.00,
+    "balance": 1000.00,
     "accountNumber": "LV29HABA2424246627601",
     "transactions": [
       {
@@ -96,6 +96,10 @@
       {
         "amount": -2000.00,
         "type": "TRANSFER"
+      },
+      {
+        "amount": 1000.00,
+        "type": "ADDTOBALANCE"
       }
     ]
   },
