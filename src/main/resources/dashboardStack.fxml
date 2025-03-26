@@ -100,7 +100,7 @@
                <graphic>
                   <ImageView fx:id="dateArrow" fitHeight="5.0" fitWidth="10.0">
                      <image>
-                        <Image url="@../../../../../../../../var/folders/8g/n0r7ykc507s0jffkj8c174t00000gn/T/95740.png" />
+                        <Image url="@images/arrow.png" />
                      </image>
                      <styleClass>
                         <String fx:value="activeArrow" />
