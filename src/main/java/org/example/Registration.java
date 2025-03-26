@@ -114,7 +114,7 @@ public class Registration {
 //    password validation
     private void passwordValidation() {
 //        Password must be at least 8 characters long and include at least one letter and one number
-        if(!passwordField.getText().matches("^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{8,}$")){
+        if(!passwordField.getText().matches("^(?=.*[A-Za-z])(?=.*\\d).{8,}$")){
             throw new NotValidPasswordException();
         }
     }

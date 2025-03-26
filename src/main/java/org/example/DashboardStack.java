@@ -16,6 +16,8 @@ import services.Database;
 
 import java.io.IOException;
 import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
 
 public class DashboardStack {
     private Database db = Database.getInstance();
@@ -38,17 +40,31 @@ public class DashboardStack {
     ImageView dateArrow;
     @FXML
     VBox vbox;
-
+    FXMLLoader loader;
     @FXML
-    private void initialize() throws IOException {
-//        sortByDate.setOnAction(this::dateButton);
-        sortByPrice.setOnAction(this::priceButton);
-        changeToDate();
+    private void initialize() {
+        sortByDate.setOnAction(event -> {
+            try {
+                dateButton(event);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        });
+        sortByPrice.setOnAction(event -> {
+            try {
+                priceButton(event);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        });
+        vbox.setSpacing(10);
+
     }
 
-    public void setUser(User user) {
+    public void setUser(User user) throws IOException {
         currentUser = user;
         setBalanceValue();
+        changeToDate();
         setMoneyIn();
         setMoneyOut();
     }
@@ -59,8 +75,8 @@ public class DashboardStack {
     public void setMoneyIn() { moneyIn.setText(db.moneyIn(currentUser).toString() + "€");}
     public void setMoneyOut() { moneyOut.setText(db.moneyOut(currentUser).toString() + "€");}
 
-//    public void dateButton(ActionEvent event) { changeToDate(); }
-    public void priceButton(ActionEvent event) { changeToPrice(); }
+    public void dateButton(ActionEvent event) throws IOException { changeToDate(); }
+    public void priceButton(ActionEvent event) throws IOException { changeToPrice(); }
 
     public void changeToDate() throws IOException {
         if (sortByDate.getStyleClass().getFirst().equals("activeButton")) {
@@ -70,7 +86,7 @@ public class DashboardStack {
                 dateDown();
             }
         } else {
-            dateDown();
+            dateUp();
         }
 
         sortByDate.getStyleClass().clear();
@@ -79,10 +95,10 @@ public class DashboardStack {
 
         sortByPrice.getStyleClass().clear();
         sortByPrice.getStyleClass().add("inactiveButton");
-        priceUp();
+
         priceArrow.getStyleClass().add("inactiveArrow");
     }
-    public void changeToPrice() {
+    public void changeToPrice() throws IOException {
         if (sortByPrice.getStyleClass().getFirst().equals("activeButton")) {
             if (priceArrow.getStyleClass().getFirst().equals("arrowDown")) {
                 priceUp();
@@ -99,29 +115,68 @@ public class DashboardStack {
 
         sortByDate.getStyleClass().clear();
         sortByDate.getStyleClass().add("inactiveButton");
-//        dateDown();
         dateArrow.getStyleClass().add("inactiveArrow");
     }
-
+//    clear vbox when new sort method called
+    public void clearVBox(){
+        vbox.getChildren().clear();
+    }
+    //    sort by date descending button handle
     public void dateDown() throws IOException {
         dateArrow.getStyleClass().clear();
         dateArrow.getStyleClass().add("arrowDown");
-
-        for (int i = 0; i < 5; i++) {
+        clearVBox();
+        for (int i = 0; i < currentUser.getTransactions().size(); i++) {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/transaction.fxml"));
             Pane newContent = loader.load();
-            vbox.setSpacing(10);
             vbox.getChildren().add(newContent);
+            TransactionController transactionController = loader.getController();
+            transactionController.setUser(currentUser);
+            transactionController.setTransactionData(currentUser.getTransactions().get(i));
         }
     }
-    public void dateUp() {
+//    sort by date ascending
+    public void dateUp() throws IOException {
         dateArrow.getStyleClass().clear();
+        currentUser.getTransactions().reversed();
+        List<Transaction> transactions = new ArrayList<>(currentUser.getTransactions()).reversed();
+        clearVBox();
+        for (int i = 0; i < transactions.size(); i++) {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/transaction.fxml"));
+            Pane newContent = loader.load();
+            vbox.getChildren().add(newContent);
+            TransactionController transactionController = loader.getController();
+            transactionController.setUser(currentUser);
+            transactionController.setTransactionData(transactions.get(i));
+        }
     }
-    public void priceDown() {
+    //    sort by amount descending
+    public void priceDown() throws IOException {
         priceArrow.getStyleClass().clear();
         priceArrow.getStyleClass().add("arrowDown");
+        List<Transaction> sortedTransactions = currentUser.sortTransactionsByAmountDescending();
+        clearVBox();
+        for (int i = 0; i < currentUser.sortTransactionsByAmountDescending().size(); i++) {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/transaction.fxml"));
+            Pane newContent = loader.load();
+            vbox.getChildren().add(newContent);
+            TransactionController transactionController = loader.getController();
+            transactionController.setUser(currentUser);
+            transactionController.setTransactionData(sortedTransactions.get(i));
+        }
     }
-    public void priceUp() {
+    //    sort by amount ascending
+    public void priceUp() throws IOException {
         priceArrow.getStyleClass().clear();
+        List<Transaction> sortedTransactions = currentUser.sortTransactionsByAmountAscending();
+        clearVBox();
+        for (int i = 0; i < currentUser.sortTransactionsByAmountDescending().size(); i++) {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/transaction.fxml"));
+            Pane newContent = loader.load();
+            vbox.getChildren().add(newContent);
+            TransactionController transactionController = loader.getController();
+            transactionController.setUser(currentUser);
+            transactionController.setTransactionData(sortedTransactions.get(i));
+        }
     }
 }
