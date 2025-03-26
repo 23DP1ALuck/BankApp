@@ -3,14 +3,18 @@ package org.example;
 import enums.TransactionType;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.Pane;
+import javafx.scene.layout.VBox;
 import models.Transaction;
 import models.User;
 import services.Database;
 
+import java.io.IOException;
 import java.math.BigDecimal;
 
 public class DashboardStack {
@@ -32,10 +36,12 @@ public class DashboardStack {
     ImageView priceArrow;
     @FXML
     ImageView dateArrow;
+    @FXML
+    VBox vbox;
 
     @FXML
-    private void initialize() {
-        sortByDate.setOnAction(this::dateButton);
+    private void initialize() throws IOException {
+//        sortByDate.setOnAction(this::dateButton);
         sortByPrice.setOnAction(this::priceButton);
         changeToDate();
     }
@@ -53,10 +59,10 @@ public class DashboardStack {
     public void setMoneyIn() { moneyIn.setText(db.moneyIn(currentUser).toString() + "€");}
     public void setMoneyOut() { moneyOut.setText(db.moneyOut(currentUser).toString() + "€");}
 
-    public void dateButton(ActionEvent event) { changeToDate(); }
+//    public void dateButton(ActionEvent event) { changeToDate(); }
     public void priceButton(ActionEvent event) { changeToPrice(); }
 
-    public void changeToDate() {
+    public void changeToDate() throws IOException {
         if (sortByDate.getStyleClass().getFirst().equals("activeButton")) {
             if (dateArrow.getStyleClass().getFirst().equals("arrowDown")) {
                 dateUp();
@@ -93,13 +99,20 @@ public class DashboardStack {
 
         sortByDate.getStyleClass().clear();
         sortByDate.getStyleClass().add("inactiveButton");
-        dateDown();
+//        dateDown();
         dateArrow.getStyleClass().add("inactiveArrow");
     }
 
-    public void dateDown() {
+    public void dateDown() throws IOException {
         dateArrow.getStyleClass().clear();
         dateArrow.getStyleClass().add("arrowDown");
+
+        for (int i = 0; i < 5; i++) {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/transaction.fxml"));
+            Pane newContent = loader.load();
+            vbox.setSpacing(10);
+            vbox.getChildren().add(newContent);
+        }
     }
     public void dateUp() {
         dateArrow.getStyleClass().clear();
