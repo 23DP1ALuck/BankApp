@@ -23,7 +23,17 @@ public class Transaction {
         this.type = type;
         this.date = LocalDateTime.now();
     }
+
+    public BigDecimal getAmount() { return amount; }
+
+    public LocalDateTime getDate() { return date; }
+
     public TransactionType getType() {
         return type;
+    }
+
+    @Override
+    public String toString() {
+        return "Amount : " + getAmount() + "Type: " + getType() + "Date: " + getDate();
     }
 }

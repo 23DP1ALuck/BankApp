@@ -116,5 +116,40 @@
     "balance": 1000.00,
     "accountNumber": "LV29HABA7727689278530",
     "transactions": []
+  },
+  {
+    "username": "testTestik21",
+    "password": "test$Testik12",
+    "name": "Test",
+    "surname": "Testikov",
+    "balance": 1100.00,
+    "accountNumber": "LV29HABA3380489509179",
+    "transactions": [
+      {
+        "amount": 100.00,
+        "type": "ADDTOBALANCE",
+        "date": "2025-03-26 19:33"
+      },
+      {
+        "amount": -200.00,
+        "type": "WITHDRAWAL",
+        "date": "2025-03-26 19:34"
+      },
+      {
+        "amount": 300.00,
+        "type": "ADDTOBALANCE",
+        "date": "2025-03-26 19:34"
+      },
+      {
+        "amount": 400.00,
+        "type": "ADDTOBALANCE",
+        "date": "2025-03-26 19:34"
+      },
+      {
+        "amount": -500.00,
+        "type": "WITHDRAWAL",
+        "date": "2025-03-26 19:34"
+      }
+    ]
   }
 ]

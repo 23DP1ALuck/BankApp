@@ -1,6 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
 
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="57.0" prefWidth="986.0" style="-fx-background-color: rgba(255, 255, 255, 0.025); -fx-background-radius: 12;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.TransactionController" />
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="57.0" prefWidth="986.0" style="-fx-background-color: rgba(255, 255, 255, 0.025); -fx-background-radius: 12;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.TransactionController">
+   <children>
+      <Label fx:id="transactionType" alignment="CENTER_RIGHT" layoutX="817.0" layoutY="20.0" prefHeight="18.0" prefWidth="147.0" text="Purchase" textFill="#ffffff80">
+         <font>
+            <Font name="Montserrat SemiBold" size="14.0" />
+         </font>
+      </Label>
+      <Label fx:id="transactionDateTime" alignment="CENTER" layoutX="420.0" layoutY="20.0" prefHeight="19.0" prefWidth="147.0" text="13.03.2025 at 19:59" textFill="#ffffff99">
+         <font>
+            <Font name="Montserrat SemiBold" size="14.0" />
+         </font>
+      </Label>
+      <Label fx:id="transactionAmount" layoutX="21.0" layoutY="20.0" prefHeight="17.0" prefWidth="82.0" text="150€" textFill="WHITE">
+         <font>
+            <Font name="Montserrat SemiBold" size="14.0" />
+         </font>
+      </Label>
+   </children>
+</Pane>
