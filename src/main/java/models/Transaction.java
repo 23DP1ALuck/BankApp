@@ -5,6 +5,7 @@ import enums.TransactionType;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 
 public class Transaction {
@@ -21,7 +22,7 @@ public class Transaction {
     public Transaction(BigDecimal amount, TransactionType type) {
         this.amount = amount;
         this.type = type;
-        this.date = LocalDateTime.now();
+        this.date = LocalDateTime.now().withSecond(0).withNano(0);
     }
 
     public BigDecimal getAmount() { return amount; }
