@@ -113,16 +113,22 @@
     "password": "maratoni06",
     "name": "Marats",
     "surname": "Razživins",
-    "balance": 1000.00,
+    "balance": 1520.00,
     "accountNumber": "LV29HABA7727689278530",
-    "transactions": []
+    "transactions": [
+      {
+        "amount": 520.00,
+        "type": "TRANSFER",
+        "date": "2025-03-26 23:33"
+      }
+    ]
   },
   {
     "username": "testTestik21",
     "password": "test$Testik12",
     "name": "Test",
     "surname": "Testikov",
-    "balance": 1100.00,
+    "balance": 969.00,
     "accountNumber": "LV29HABA3380489509179",
     "transactions": [
       {
@@ -149,6 +155,21 @@
         "amount": -500.00,
         "type": "WITHDRAWAL",
         "date": "2025-03-26 19:34"
+      },
+      {
+        "amount": 500.00,
+        "type": "ADDTOBALANCE",
+        "date": "2025-03-26 23:31"
+      },
+      {
+        "amount": -520.00,
+        "type": "TRANSFER",
+        "date": "2025-03-26 23:33"
+      },
+      {
+        "amount": -111.00,
+        "type": "WITHDRAWAL",
+        "date": "2025-03-26 23:56"
       }
     ]
   }
