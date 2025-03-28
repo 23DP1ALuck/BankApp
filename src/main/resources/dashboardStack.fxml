@@ -63,7 +63,7 @@
             <Insets top="40.0" />
          </padding>
       </Label>
-      <Label layoutX="39.0" layoutY="216.0" prefHeight="51.0" prefWidth="281.0" text="Transaction history" textFill="WHITE">
+      <Label layoutX="56.0" layoutY="216.0" prefHeight="51.0" prefWidth="281.0" text="Transaction history" textFill="WHITE">
          <font>
             <Font name="Montserrat SemiBold" size="25.0" />
          </font>
@@ -112,9 +112,9 @@
                </graphic></Button>
          </children>
       </Pane>
-      <ScrollPane fitToWidth="true" hbarPolicy="NEVER" layoutX="38.0" layoutY="339.0" prefHeight="463.0" prefWidth="986.0" style="-fx-background-color: transparent;" vbarPolicy="NEVER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="38.0" AnchorPane.rightAnchor="35.0" AnchorPane.topAnchor="339.0">
+      <ScrollPane fx:id="scrollPane" fitToWidth="true" hbarPolicy="NEVER" prefHeight="338.0" prefWidth="990.0" styleClass="scrollpane" vbarPolicy="NEVER" AnchorPane.bottomAnchor="125.0" AnchorPane.leftAnchor="38.0" AnchorPane.rightAnchor="35.0" AnchorPane.topAnchor="339.0">
          <content>
-            <VBox fx:id="vbox" prefHeight="622.0" prefWidth="986.0" style="-fx-background-color: #1E1E1E;" />
+            <VBox fx:id="vbox" prefWidth="986.0" style="-fx-background-color: #1E1E1E;" />
          </content>
       </ScrollPane>
    </children>

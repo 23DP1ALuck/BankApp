@@ -12,16 +12,8 @@
     -fx-text-fill: #ffffff;
     -fx-font-size: 14.0;
 }
-#navDashboardContainer:hover{
-    -fx-background-color: rgba(255,255,255,0.1);
-    -fx-background-radius: 12.5;
-}
-#navPaymentContainer:hover{
-    -fx-background-color: rgba(255,255,255,0.1);
-    -fx-background-radius: 12.5;
-}
-#navVaBankContainer:hover{
-    -fx-background-color: rgba(255,255,255,0.1);
+.nav:hover{
+    -fx-background-color: rgba(255,255,255,0.025);
     -fx-background-radius: 12.5;
 }
 #logOutButton:hover{
@@ -75,4 +67,11 @@ PasswordField{
 
 .arrowDown {
     -fx-scale-y: -1;
+}
+
+.scrollpane{
+   -fx-background-color:transparent;
+}
+.scrollpane .viewport {
+       -fx-background-color: transparent;
 }
