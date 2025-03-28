@@ -43,9 +43,9 @@
                         <Font name="Montserrat SemiBold" size="13.0" />
                      </font></Label>
                </children></Pane>
-            <VBox layoutX="10.0" layoutY="255.0" prefHeight="162.0" prefWidth="177.0">
+            <VBox layoutX="10.0" layoutY="255.0" prefHeight="162.0" prefWidth="195.0">
                <children>
-                  <Pane id="navDashboardContainer" fx:id="navDashboardContainer" prefHeight="56.0" prefWidth="210.0">
+                  <Pane id="navDashboardContainer" fx:id="navDashboardContainer" prefHeight="56.0" prefWidth="210.0" styleClass="nav">
                      <children>
                         <ImageView fitHeight="18.0" fitWidth="18.0" layoutX="14.0" layoutY="16.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -59,7 +59,7 @@
                         </Label>
                      </children>
                   </Pane>
-                  <Pane id="navPaymentContainer" fx:id="navPaymentContainer" prefHeight="56.0" prefWidth="210.0">
+                  <Pane id="navPaymentContainer" fx:id="navPaymentContainer" prefHeight="56.0" prefWidth="210.0" styleClass="nav">
                      <children>
                         <ImageView fitHeight="18.0" fitWidth="18.0" layoutX="13.0" layoutY="16.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -73,7 +73,7 @@
                         </Label>
                      </children>
                   </Pane>
-                  <Pane id="navVaBankContainer" fx:id="navVaBankContainer" prefHeight="56.0" prefWidth="210.0">
+                  <Pane id="navVaBankContainer" fx:id="navVaBankContainer" prefHeight="56.0" prefWidth="210.0" styleClass="nav">
                      <children>
                         <ImageView fitHeight="18.0" fitWidth="18.0" layoutX="11.0" layoutY="18.0" pickOnBounds="true" preserveRatio="true">
                            <image>

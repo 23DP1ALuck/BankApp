@@ -69,9 +69,13 @@ public class Dashboard {
         AnchorPane newContent = loader.load();
 
         if (stackName.equals("dashboard")) {
+            navDashboardContainer.setStyle("-fx-background-color: rgba(255,255,255,0.1); -fx-background-radius: 12.5;");
+            navPaymentContainer.setStyle("");
             DashboardStack dashboardStackController = loader.getController();
             dashboardStackController.setUser(currentUser);
         } else {
+            navPaymentContainer.setStyle("-fx-background-color: rgba(255,255,255,0.1); -fx-background-radius: 12.5;");
+            navDashboardContainer.setStyle("");
             PaymentStack paymentStackController = loader.getController();
             paymentStackController.setUser(currentUser);
         }
