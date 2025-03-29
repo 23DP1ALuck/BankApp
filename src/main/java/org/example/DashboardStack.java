@@ -8,11 +8,14 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import models.Transaction;
 import models.User;
 import services.Database;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 
 import java.io.IOException;
 import java.math.BigDecimal;
@@ -22,6 +25,7 @@ import java.util.List;
 public class DashboardStack {
     private Database db = Database.getInstance();
     private User currentUser;
+    private String activeSort = "sortByDateUp";
     @FXML
     Label balance;
     @FXML
@@ -57,8 +61,26 @@ public class DashboardStack {
                 throw new RuntimeException(e);
             }
         });
+
         vbox.setSpacing(10);
 
+        searchField.addEventFilter(KeyEvent.ANY, event -> {
+            String c = event.getCharacter();
+
+            if (c.equals(".") && searchField.getText().isEmpty()) {
+                event.consume();
+            }
+        });
+
+        searchField.textProperty().addListener((observable, oldValue, newValue) -> {
+            try {
+                Method sort = DashboardStack.class.getDeclaredMethod(activeSort);
+                sort.setAccessible(true);
+                sort.invoke(this);
+            } catch (NoSuchMethodException | InvocationTargetException | IllegalAccessException e) {
+                e.printStackTrace();
+            }
+        });
     }
 
     public void setUser(User user) throws IOException {
@@ -121,42 +143,56 @@ public class DashboardStack {
     public void clearVBox(){
         vbox.getChildren().clear();
     }
-    //    sort by date descending button handle
+
+    //    sort by date descending
     public void dateDown() throws IOException {
         dateArrow.getStyleClass().clear();
         dateArrow.getStyleClass().add("arrowDown");
+        sortByDateDown();
+        activeSort = "sortByDateDown";
+    }
+    private void sortByDateDown() throws IOException {
         clearVBox();
-        for (int i = 0; i < currentUser.getTransactions().size(); i++) {
+        List<Transaction> sortedTransactions = currentUser.searchedTransactions(searchField.getText());
+        for (int i = 0; i < sortedTransactions.size(); i++) {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/transaction.fxml"));
             Pane newContent = loader.load();
             vbox.getChildren().add(newContent);
             TransactionController transactionController = loader.getController();
             transactionController.setUser(currentUser);
-            transactionController.setTransactionData(currentUser.getTransactions().get(i));
+            transactionController.setTransactionData(sortedTransactions.get(i));
         }
     }
-//    sort by date ascending
+    //    sort by date ascending
     public void dateUp() throws IOException {
         dateArrow.getStyleClass().clear();
         currentUser.getTransactions().reversed();
-        List<Transaction> transactions = new ArrayList<>(currentUser.getTransactions()).reversed();
+        sortByDateUp();
+        activeSort = "sortByDateUp";
+    }
+    private void sortByDateUp() throws IOException {
         clearVBox();
-        for (int i = 0; i < transactions.size(); i++) {
+        List<Transaction> sortedTransactions = currentUser.searchedTransactions(searchField.getText()).reversed();
+        for (int i = 0; i < sortedTransactions.size(); i++) {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/transaction.fxml"));
             Pane newContent = loader.load();
             vbox.getChildren().add(newContent);
             TransactionController transactionController = loader.getController();
             transactionController.setUser(currentUser);
-            transactionController.setTransactionData(transactions.get(i));
+            transactionController.setTransactionData(sortedTransactions.get(i));
         }
     }
     //    sort by amount descending
     public void priceDown() throws IOException {
         priceArrow.getStyleClass().clear();
         priceArrow.getStyleClass().add("arrowDown");
-        List<Transaction> sortedTransactions = currentUser.sortTransactionsByAmountDescending();
+        sortByPriceDown();
+        activeSort = "sortByPriceDown";
+    }
+    private void sortByPriceDown() throws IOException{
         clearVBox();
-        for (int i = 0; i < currentUser.sortTransactionsByAmountDescending().size(); i++) {
+        List<Transaction> sortedTransactions = currentUser.sortTransactionsByAmountDescending(searchField.getText());
+        for (int i = 0; i < sortedTransactions.size(); i++) {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/transaction.fxml"));
             Pane newContent = loader.load();
             vbox.getChildren().add(newContent);
@@ -168,9 +204,13 @@ public class DashboardStack {
     //    sort by amount ascending
     public void priceUp() throws IOException {
         priceArrow.getStyleClass().clear();
-        List<Transaction> sortedTransactions = currentUser.sortTransactionsByAmountAscending();
+        sortByPriceUp();
+        activeSort = "sortByPriceUp";
+    }
+    private void sortByPriceUp() throws IOException {
         clearVBox();
-        for (int i = 0; i < currentUser.sortTransactionsByAmountDescending().size(); i++) {
+        List<Transaction> sortedTransactions = currentUser.sortTransactionsByAmountAscending(searchField.getText());
+        for (int i = 0; i < sortedTransactions.size(); i++) {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/transaction.fxml"));
             Pane newContent = loader.load();
             vbox.getChildren().add(newContent);

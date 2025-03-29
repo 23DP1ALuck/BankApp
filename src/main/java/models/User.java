@@ -109,9 +109,10 @@ public class User {
         } else throw new NotPositiveAmountException();
     }
 // bubble sort by amount
-    public List<Transaction> sortTransactionsByAmountAscending() {
+    public List<Transaction> sortTransactionsByAmountAscending(String search) {
 //        make copy of transactions
-        List<Transaction> sortedTransactions = new ArrayList<>(transactions);
+//        List<Transaction> sortedTransactions = new ArrayList<>(transactions);
+        List<Transaction> sortedTransactions = searchedTransactions(search);
         for (int i = 0; i < sortedTransactions.size() - 1; i++) {
             for(int j = 0; j < sortedTransactions.size() - 1; j++) {
                 if(sortedTransactions.get(j).amount.compareTo(sortedTransactions.get(j + 1).amount) > 0) {
@@ -125,7 +126,21 @@ public class User {
         return sortedTransactions;
     }
 //    reversed sort by amount
-    public List<Transaction> sortTransactionsByAmountDescending() {
-        return sortTransactionsByAmountAscending().reversed();
+    public List<Transaction> sortTransactionsByAmountDescending(String search) {
+        return sortTransactionsByAmountAscending(search).reversed();
+    }
+
+    public List<Transaction> searchedTransactions(String search) {
+        if (search == null) {
+            return new ArrayList<>(transactions);
+        } else {
+            List<Transaction> searched = new ArrayList<>();
+            for (Transaction transaction : transactions) {
+                if (transaction.getAmount().toString().contains(search) || transaction.date().contains(search) || transaction.getType().toString().contains(search.toUpperCase())) {
+                    searched.add(transaction);
+                }
+            }
+            return searched;
+        }
     }
 }
