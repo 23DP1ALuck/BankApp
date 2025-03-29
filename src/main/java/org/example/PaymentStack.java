@@ -1,9 +1,6 @@
 package org.example;
 
-import Exceptions.IncorrectAccountNumber;
-import Exceptions.NotPositiveAmountException;
-import Exceptions.CannotWithdrawException;
-import Exceptions.TypeOrFieldsNotSetException;
+import Exceptions.*;
 import enums.TransactionType;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -72,6 +69,15 @@ public class PaymentStack {
         });
         // hides userMessage by default
         userMessage.setVisible(false);
+        completeButton.sceneProperty().addListener((observable, oldScene, newScene) -> {
+            if (newScene != null) {
+                newScene.addEventFilter(KeyEvent.KEY_PRESSED, event -> {
+                    if (event.getCode() == KeyCode.ENTER) {
+                        completeButton.fire();
+                    }
+                });
+            }
+        });
     }
 
     public void setUser(User user) {
@@ -81,6 +87,7 @@ public class PaymentStack {
 
     public void radioChoice(ActionEvent event) {
         userMessage.setVisible(false);
+        accNumField.clear();
         accNumField.setDisable(!type.getSelectedToggle().equals(transferButton));
     }
 
@@ -104,19 +111,33 @@ public class PaymentStack {
     }
 
     public void completeTransaction(ActionEvent event) {
+        userMessage.getStyleClass().clear();
         try {
             Transaction transaction = createTransaction();
             if(addMoneyButton.isSelected() || withdrawButton.isSelected()) {
                 currentUser.performTransaction(transaction);
                 db.saveToJson(currentUser);
+                //                completed transaction label
+                amountField.clear();
+                userMessage.setText("Transaction completed.");
+                userMessage.getStyleClass().add("completed");
+                userMessage.setVisible(true);
             } else if (transferButton.isSelected()) {
                 User recipient = db.getUserFromAccNumber(accNumField.getText());
                 currentUser.performTransaction(transaction, db.getUserFromAccNumber(accNumField.getText()));
                 db.saveToJson(currentUser);
                 db.saveToJson(recipient);
+//                clear when button pressed
+                amountField.clear();
+                accNumField.clear();
+                //                completed transaction label
+                userMessage.setText("Transaction completed.");
+                userMessage.getStyleClass().add("completed");
+                userMessage.setVisible(true);
             }
         } catch (NotPositiveAmountException | CannotWithdrawException | TypeOrFieldsNotSetException |
-                 IncorrectAccountNumber e) {
+                 IncorrectAccountNumber |  CannotSendMoneyToYourself e) {
+            userMessage.getStyleClass().add("error");
             userMessage.setText(e.getMessage());
             userMessage.setVisible(true);
         } catch (IOException e) {

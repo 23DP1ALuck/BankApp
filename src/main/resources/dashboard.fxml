@@ -38,7 +38,7 @@
             </Label>
             <Pane layoutX="12.0" layoutY="149.0" prefHeight="43.0" prefWidth="195.0" style="-fx-background-color: rgba(255,255,255,0.1); -fx-background-radius: 20; -fx-border-color: white; -fx-border-radius: 20;">
                <children>
-                  <Label fx:id="accountNumber" layoutX="9.0" layoutY="-2.0" prefHeight="49.0" prefWidth="178.0" text="LV29HABA1234567891234" textFill="WHITE">
+                  <Label fx:id="accountNumber" layoutX="9.0" layoutY="-2.0" prefHeight="49.0" prefWidth="178.0" text="LV29HABA1234567891234" style="-fx-cursor: hand" textFill="WHITE">
                      <font>
                         <Font name="Montserrat SemiBold" size="13.0" />
                      </font></Label>

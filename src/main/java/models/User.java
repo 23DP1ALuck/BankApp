@@ -1,5 +1,6 @@
 package models;
 
+import Exceptions.CannotSendMoneyToYourself;
 import Exceptions.IncorrectAccountNumber;
 import Exceptions.NotPositiveAmountException;
 import Exceptions.CannotWithdrawException;
@@ -85,7 +86,10 @@ public class User {
         transactions.add(transaction);
     }
 
-    public void performTransaction(Transaction transaction, User recipient) throws NotPositiveAmountException {
+    public void performTransaction(Transaction transaction, User recipient) throws NotPositiveAmountException, CannotSendMoneyToYourself {
+        if(this.getAccountNumber().equals(recipient.getAccountNumber())){
+            throw new CannotSendMoneyToYourself();
+        }
         if (transaction.amount.compareTo(BigDecimal.ZERO) > 0){
             if(this.balance.compareTo(transaction.amount) >= 0) {
                 try{

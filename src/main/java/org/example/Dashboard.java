@@ -7,6 +7,8 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.input.Clipboard;
+import javafx.scene.input.ClipboardContent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
@@ -41,6 +43,12 @@ public class Dashboard {
         navDashboardContainer.setOnMouseClicked(this::switchToDashboard);
         navPaymentContainer.setOnMouseClicked(this::switchToPayment);
         logOutButton.setOnMouseClicked(this::logOut);
+        accountNumber.setOnMouseClicked(event -> {
+            Clipboard clipboard = Clipboard.getSystemClipboard();
+            ClipboardContent content = new ClipboardContent();
+            content.putString(accountNumber.getText());
+            clipboard.setContent(content);
+        });
 
 //        hover for logout button
         logOutButton.setOnMouseEntered(e -> logOutButton.setStyle("-fx-background-color:  rgba(255,255,255,0.25);-fx-background-radius: 15;"));
