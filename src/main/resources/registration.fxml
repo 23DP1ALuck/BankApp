@@ -38,10 +38,6 @@
                <font>
                   <Font name="Montserrat SemiBold" size="13.0" />
                </font></TextField>
-            <PasswordField fx:id="passwordField" layoutX="16.0" layoutY="183.0" prefHeight="25.0" prefWidth="178.0" promptText="Password" style="-fx-background-color: rgba(255, 255, 255, 0.025); -fx-text-fill: #FFFFFF;">
-               <font>
-                  <Font name="Montserrat SemiBold" size="13.0" />
-               </font></PasswordField>
             <TextField fx:id="nameField" layoutX="17.0" layoutY="98.0" prefHeight="25.0" prefWidth="178.0" promptText="Name" style="-fx-background-color: rgba(255, 255, 255, 0.025); -fx-text-fill: #FFFFFF;">
                <font>
                   <Font name="Montserrat SemiBold" size="13.0" />
@@ -50,6 +46,10 @@
                <font>
                   <Font name="Montserrat SemiBold" size="13.0" />
                </font></TextField>
+            <PasswordField fx:id="passwordField" layoutX="16.0" layoutY="183.0" prefHeight="25.0" prefWidth="178.0" promptText="Password" style="-fx-background-color: rgba(255, 255, 255, 0.025); -fx-text-fill: #FFFFFF;">
+               <font>
+                  <Font name="Montserrat SemiBold" size="13.0" />
+               </font></PasswordField>
          </children>
       </Pane>
    </children>

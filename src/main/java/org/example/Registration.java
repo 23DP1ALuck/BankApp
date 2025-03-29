@@ -3,6 +3,7 @@ package org.example;
 import Exceptions.NotValidPasswordException;
 import Exceptions.NotValidUsernameException;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -12,6 +13,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import services.Database;
@@ -53,6 +56,15 @@ public class Registration {
         });
         // hides userMessage by default
         userMessage.setVisible(false);
+        signUpButton.sceneProperty().addListener((observable, oldScene, newScene) -> {
+            if (newScene != null) {
+                newScene.addEventFilter(KeyEvent.KEY_PRESSED, event -> {
+                    if (event.getCode() == KeyCode.ENTER) {
+                        signUpButton.fire();
+                    }
+                });
+            }
+        });
     }
 
     // action on sign up button

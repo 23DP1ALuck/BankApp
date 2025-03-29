@@ -11,6 +11,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import java.io.IOException;
@@ -50,6 +52,15 @@ public class Login {
         });
         // hides userMessage by default
         userMessage.setVisible(false);
+        loginButton.sceneProperty().addListener((observable, oldScene, newScene) -> {
+            if(newScene != null){
+                newScene.addEventFilter(KeyEvent.KEY_PRESSED, event -> {
+                    if (event.getCode() == KeyCode.ENTER) {
+                        loginButton.fire();
+                    }
+                });
+            }
+        });
     }
 
     // switch to registration scene
@@ -92,7 +103,6 @@ public class Login {
             stage.show();
         } catch (FieldsAreBlankException | NoSuchUserException | IncorrectPassException |  IOException e){
             userMessage.setText(e.getMessage());
-            e.printStackTrace();
             userMessage.setVisible(true);
         }
     }

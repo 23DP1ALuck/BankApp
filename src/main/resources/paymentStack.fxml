@@ -48,6 +48,6 @@
                </font></Button>
             </children>
         </Pane>
-      <Label fx:id="userMessage" alignment="CENTER" layoutX="382.0" layoutY="53.0" prefHeight="39.0" prefWidth="300.0" styleClass="error" />
+      <Label fx:id="userMessage" alignment="CENTER" layoutX="382.0" layoutY="53.0" prefHeight="39.0" prefWidth="300.0" />
     </children>
 </AnchorPane>
