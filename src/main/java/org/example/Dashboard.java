@@ -109,8 +109,8 @@ public class Dashboard {
             Parent root = FXMLLoader.load(getClass().getResource("/login.fxml"));
             stage = (Stage)((Node)event.getSource()).getScene().getWindow();
             scene = new Scene(root);
-            stage.setWidth(603);
-            stage.setHeight(550);
+//            stage.setWidth(603);
+//            stage.setHeight(550);
             stage.centerOnScreen();
             scene.getStylesheets().clear();
             scene.getStylesheets().add(getClass().getResource("/styles/style.css").toExternalForm());

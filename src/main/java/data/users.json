@@ -158,7 +158,7 @@
     "password": "test$Testik12",
     "name": "Test",
     "surname": "Testikov",
-    "balance": 7822.12,
+    "balance": 7711.12,
     "accountNumber": "LV29HABA3380489509179",
     "transactions": [
       {
@@ -265,6 +265,21 @@
         "amount": 111.00,
         "type": "TRANSFER",
         "date": "2025-03-29 12:17"
+      },
+      {
+        "amount": -1000.00,
+        "type": "WITHDRAWAL",
+        "date": "2025-04-03 17:28"
+      },
+      {
+        "amount": 1000.00,
+        "type": "ADDTOBALANCE",
+        "date": "2025-04-03 20:56"
+      },
+      {
+        "amount": -111.00,
+        "type": "WITHDRAWAL",
+        "date": "2025-04-03 20:56"
       }
     ]
   },
