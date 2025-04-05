@@ -88,6 +88,18 @@ public class Database {
             gson.toJson(users, fw);
         }
     }
+    public void deteteUser(User deletedUser) throws IOException{
+        jsonLoader();
+        for (int i = 0; i < users.size(); i++) {
+            if(users.get(i).getUsername().equals(deletedUser.getUsername())){
+                users.remove(i);
+                break;
+            }
+        }
+        try(FileWriter fw = new FileWriter(filePath)) {
+            gson.toJson(users, fw);
+        }
+    }
     public BigDecimal moneyIn(User user) {
         BigDecimal totalIn = BigDecimal.ZERO;
         List<Transaction> transactions = user.getTransactions();

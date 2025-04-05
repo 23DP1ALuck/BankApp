@@ -10,19 +10,19 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="507.0" prefWidth="603.0" style="-fx-background-color: #1E1E1E;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.Registration">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" style="-fx-background-color: #1E1E1E;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.Registration">
    <children>
-      <Label id="switchToLogin" fx:id="switchToLogin" layoutX="219.0" layoutY="425.0" text="Already have an account?" textAlignment="CENTER" textFill="#ffffffb2">
+      <Label id="switchToLogin" fx:id="switchToLogin" layoutX="550.0" layoutY="575.0" text="Already have an account?" textAlignment="CENTER" textFill="#ffffffb2">
          <font>
             <Font name="Montserrat SemiBold" size="14.0" />
          </font></Label>
-      <Label fx:id="userMessage" alignment="CENTER" contentDisplay="CENTER" layoutX="152.0" layoutY="458.0" prefHeight="40.0" prefWidth="321.0" styleClass="error" textAlignment="CENTER" />
-      <ImageView fitHeight="52.0" fitWidth="88.0" layoutX="258.0" layoutY="45.0" pickOnBounds="true" preserveRatio="true">
+      <Label fx:id="userMessage" alignment="CENTER" contentDisplay="CENTER" layoutX="480.0" layoutY="610.0" prefHeight="40.0" prefWidth="321.0" styleClass="error" textAlignment="CENTER" />
+      <ImageView fitHeight="52.0" fitWidth="88.0" layoutX="600.0" layoutY="192.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@images/VAbankWhite.png" />
          </image>
       </ImageView>
-      <Pane layoutX="202.0" layoutY="130.0" prefHeight="281.0" prefWidth="218.0" style="-fx-background-color: rgba(255, 255, 255, 0.025); -fx-background-radius: 20;">
+      <Pane layoutX="535.0" layoutY="274.0" prefHeight="281.0" prefWidth="218.0" style="-fx-background-color: rgba(255, 255, 255, 0.025); -fx-background-radius: 20;">
          <children>
             <Button fx:id="signUpButton" layoutX="29.0" layoutY="230.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="160.0" style="-fx-background-color: #FFFFFF; -fx-background-radius: 12;" text="Sign up">
                <font>
