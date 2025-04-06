@@ -51,7 +51,7 @@ PasswordField{
     -fx-background-color: rgba(95, 246, 47, 0.1);
     -fx-text-fill: #ffffff;
     -fx-background-radius: 12.5;
-    -fx-border-color: rgba(255, 65, 65, 0.2);
+    -fx-border-color: rgba(95, 246, 47, 0.2);
     -fx-border-radius: 12.5;
 }
 .activeButton {
@@ -81,4 +81,52 @@ PasswordField{
 }
 .scrollpane .viewport {
        -fx-background-color: transparent;
+}
+
+.dialog-pane {
+    -fx-background-color: rgba(25, 25, 30, 0.95);
+    -fx-border-radius: 0;
+    -fx-background-radius: 0;
+    -fx-border-color: rgba(255, 255, 255, 0.05);
+    -fx-font-family: "Montserrat SemiBold";
+    -fx-text-fill: #ffffff;
+}
+
+.dialog-pane .header-panel {
+    -fx-background-color: transparent;
+}
+
+.dialog-pane .label {
+    -fx-text-fill: rgba(255, 255, 255, 0.9);
+    -fx-font-size: 14px;
+}
+
+.dialog-pane .content {
+    -fx-background-color: transparent;
+}
+
+.dialog-pane .button {
+    -fx-background-color: rgba(95, 246, 47, 0.1);
+    -fx-text-fill: #FFFFFF;
+    -fx-font-family: "Montserrat SemiBold";
+    -fx-border-radius: 10;
+    -fx-background-radius: 10;
+    -fx-border-color: rgba(95, 246, 47, 0.2);
+}
+.dialog-pane .button:hover {
+    -fx-background-color: rgba(95, 246, 47, 0.2);
+}
+
+.dialog-pane .button:default {
+    -fx-background-color: rgba(255, 65, 65, 0.1);
+    -fx-text-fill: #ffffff;
+    -fx-font-family: "Montserrat SemiBold";
+    -fx-border-color: rgba(255, 65, 65, 0.2);
+}
+.dialog-pane .button:default:hover {
+    -fx-background-color: rgba(255, 65, 65, 0.2);
+}
+
+.dialog-pane .graphic-container {
+    -fx-padding: 10;
 }

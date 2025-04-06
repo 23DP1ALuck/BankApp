@@ -8,6 +8,7 @@ import enums.TransactionType;
 import services.Database;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,14 +20,17 @@ public class User {
     private BigDecimal balance;
     private String accountNumber;
     private List<Transaction> transactions;
+    private Boolean firstTopUp;
+
     public User(String username, String password, String name, String surname) {
         this.username = username;
         this.password = password;
         this.name = name;
         this.surname = surname;
-        this.balance = new BigDecimal(1000).setScale(2);
+        this.balance = new BigDecimal(0).setScale(2);
         this.accountNumber = AccountNumber.accountNumberGenerator();
         this.transactions = new ArrayList<>();
+        this.firstTopUp = true;
     }
 
     public void setUsername(String username) {
@@ -67,12 +71,19 @@ public class User {
 
     public List<Transaction> getTransactions() { return transactions; }
 
+    private Boolean addBonus;
     public void performTransaction(Transaction transaction) throws NotPositiveAmountException {
         if (transaction.amount.compareTo(BigDecimal.ZERO) > 0) {
             switch (transaction.type) {
                 case ADDTOBALANCE -> {
                     setBalance(this.balance.add(transaction.amount));
                     System.out.println("balance topped by " + transaction.amount);
+                    if (firstTopUp) {
+                        if (transaction.amount.compareTo(BigDecimal.valueOf(100)) >= 0) {
+                            addBonus = true;
+                        }
+                        firstTopUp = false;
+                    }
                 }
                 case WITHDRAWAL -> {
                     if (this.balance.compareTo(transaction.amount) >= 0) {
@@ -84,6 +95,12 @@ public class User {
             }
         } else throw new NotPositiveAmountException();
         transactions.add(transaction);
+        if (addBonus) {
+            BigDecimal bonus = (transaction.amount.multiply(BigDecimal.valueOf(0.1))).setScale(2, RoundingMode.FLOOR);
+            setBalance(this.balance.add(bonus));
+            transactions.add(new Transaction(bonus, TransactionType.BONUS));
+            addBonus = false;
+        }
     }
 
     public void performTransaction(Transaction transaction, User recipient) throws NotPositiveAmountException, CannotSendMoneyToYourself {
@@ -92,11 +109,7 @@ public class User {
         }
         if (transaction.amount.compareTo(BigDecimal.ZERO) > 0){
             if(this.balance.compareTo(transaction.amount) >= 0) {
-                try{
-                    recipient.setBalance(recipient.getBalance().add(transaction.amount));
-                }catch (NullPointerException e){
-                    throw new IncorrectAccountNumber();
-                }
+                recipient.setBalance(recipient.getBalance().add(transaction.amount));
                 Transaction recipientTransaction =  new Transaction(transaction.amount, transaction.type);
                 recipient.transactions.add(recipientTransaction);
 

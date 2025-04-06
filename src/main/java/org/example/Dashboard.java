@@ -1,5 +1,6 @@
 package org.example;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -33,7 +34,7 @@ public class Dashboard {
     @FXML
     Label nameAndLastName;
     @FXML
-    Pane navDashboardContainer, navPaymentContainer;
+    Pane navDashboardContainer, navPaymentContainer, navSettingsContainer;
     @FXML
     Button logOutButton;
 
@@ -42,7 +43,8 @@ public class Dashboard {
         // button action listeners
         navDashboardContainer.setOnMouseClicked(this::switchToDashboard);
         navPaymentContainer.setOnMouseClicked(this::switchToPayment);
-        logOutButton.setOnMouseClicked(this::logOut);
+        navSettingsContainer.setOnMouseClicked(this::switchToSettings);
+        logOutButton.setOnAction(this::logOut);
         accountNumber.setOnMouseClicked(event -> {
             Clipboard clipboard = Clipboard.getSystemClipboard();
             ClipboardContent content = new ClipboardContent();
@@ -71,6 +73,8 @@ public class Dashboard {
             fxml = "/dashboardStack.fxml";
         } else if (stackName.equals("payment")) {
             fxml = "/paymentStack.fxml";
+        } else if (stackName.equals("settings")) {
+            fxml = "/settingsStack.fxml";
         } else return;
 
         FXMLLoader loader = new FXMLLoader(getClass().getResource(fxml));
@@ -79,11 +83,20 @@ public class Dashboard {
         if (stackName.equals("dashboard")) {
             navDashboardContainer.setStyle("-fx-background-color: rgba(255,255,255,0.1); -fx-background-radius: 12.5;");
             navPaymentContainer.setStyle("");
+            navSettingsContainer.setStyle("");
             DashboardStack dashboardStackController = loader.getController();
             dashboardStackController.setUser(currentUser);
+        } else if (stackName.equals("settings")) {
+            navSettingsContainer.setStyle("-fx-background-color: rgba(255,255,255,0.1); -fx-background-radius: 12.5;");
+            navPaymentContainer.setStyle("");
+            navDashboardContainer.setStyle("");
+            SettingsStack settingsStackController = loader.getController();
+            settingsStackController.setUser(currentUser);
+            settingsStackController.setController(this);
         } else {
             navPaymentContainer.setStyle("-fx-background-color: rgba(255,255,255,0.1); -fx-background-radius: 12.5;");
             navDashboardContainer.setStyle("");
+            navSettingsContainer.setStyle("");
             PaymentStack paymentStackController = loader.getController();
             paymentStackController.setUser(currentUser);
         }
@@ -104,7 +117,13 @@ public class Dashboard {
             loadStackPane("payment");
         } catch (IOException e) {}
     }
-    public void logOut(MouseEvent event) {
+    // shows settings stackPane
+    public void switchToSettings(MouseEvent event) {
+        try {
+            loadStackPane("settings");
+        } catch (IOException e) {}
+    }
+    public void logOut(ActionEvent event) {
         try {
             Parent root = FXMLLoader.load(getClass().getResource("/login.fxml"));
             stage = (Stage)((Node)event.getSource()).getScene().getWindow();

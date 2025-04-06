@@ -347,5 +347,52 @@
         "date": "2025-03-29 12:26"
       }
     ]
+  },
+  {
+    "username": "asd",
+    "password": "af",
+    "name": "a",
+    "surname": "a",
+    "balance": 366.20,
+    "accountNumber": "LV29HABA7441979512118",
+    "transactions": [
+      {
+        "amount": 200.00,
+        "type": "ADDTOBALANCE",
+        "date": "2025-04-05 19:14"
+      },
+      {
+        "amount": 20.00,
+        "type": "BONUS",
+        "date": "2025-04-05 19:14"
+      },
+      {
+        "amount": 132.00,
+        "type": "ADDTOBALANCE",
+        "date": "2025-04-05 19:14"
+      },
+      {
+        "amount": 13.20,
+        "type": "BONUS",
+        "date": "2025-04-05 19:14"
+      },
+      {
+        "amount": 1.00,
+        "type": "ADDTOBALANCE",
+        "date": "2025-04-05 21:34"
+      },
+      {
+        "amount": -1.00,
+        "type": "WITHDRAWAL",
+        "date": "2025-04-05 21:40"
+      },
+      {
+        "amount": 1.00,
+        "type": "ADDTOBALANCE",
+        "date": "2025-04-06 14:56"
+      }
+    ],
+    "firstTopUp": false,
+    "addBonus": false
   }
 ]

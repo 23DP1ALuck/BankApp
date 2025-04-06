@@ -33,6 +33,9 @@ public class TransactionController {
             case ADDTOBALANCE -> {
                 return "Add Balance";
             }
+            case BONUS -> {
+                return "First top up bonus";
+            }
         } return null;
     }
     public void setTransactionData(Transaction transaction) {

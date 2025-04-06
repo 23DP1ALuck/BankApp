@@ -64,14 +64,6 @@ public class DashboardStack {
 
         vbox.setSpacing(10);
 
-        searchField.addEventFilter(KeyEvent.ANY, event -> {
-            String c = event.getCharacter();
-
-            if (c.equals(".") && searchField.getText().isEmpty()) {
-                event.consume();
-            }
-        });
-
         searchField.textProperty().addListener((observable, oldValue, newValue) -> {
             try {
                 Method sort = DashboardStack.class.getDeclaredMethod(activeSort);
