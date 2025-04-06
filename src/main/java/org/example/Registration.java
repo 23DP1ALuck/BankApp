@@ -13,6 +13,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
@@ -26,6 +28,7 @@ public class Registration {
     private Stage stage;
     private Scene scene;
     private Parent root;
+    private String password;
 
     @FXML
     private TextField usernameField;
@@ -40,7 +43,9 @@ public class Registration {
     @FXML
     private Label switchToLogin;
     @FXML
-    private Button signUpButton;
+    private Button signUpButton, showPassButton;
+    @FXML
+    private ImageView showImage;
 
     @FXML
     private void initialize() {
@@ -64,6 +69,20 @@ public class Registration {
                     }
                 });
             }
+        });
+
+        showPassButton.addEventFilter(MouseEvent.MOUSE_PRESSED, e -> {
+            Image hide = new Image(getClass().getResourceAsStream("/images/hide.png"));
+            showImage.setImage(hide);
+            password = passwordField.getText();
+            passwordField.setPromptText(password);
+            passwordField.clear();
+        });
+        showPassButton.addEventFilter(MouseEvent.MOUSE_RELEASED, e -> {
+            Image show = new Image(getClass().getResourceAsStream("/images/show.png"));
+            showImage.setImage(show);
+            passwordField.setPromptText("Password");
+            passwordField.setText(password);
         });
     }
 

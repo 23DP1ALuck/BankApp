@@ -124,7 +124,7 @@ public class PaymentStack {
                 userMessage.setVisible(true);
             } else if (transferButton.isSelected()) {
                 User recipient = db.getUserFromAccNumber(accNumField.getText());
-                currentUser.performTransaction(transaction, db.getUserFromAccNumber(accNumField.getText()));
+                currentUser.performTransaction(transaction, recipient);
                 db.saveToJson(currentUser);
                 db.saveToJson(recipient);
 //                clear when button pressed

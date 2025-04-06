@@ -1,5 +1,5 @@
 package enums;
 
 public enum TransactionType {
-    ADDTOBALANCE, WITHDRAWAL, TRANSFER;
+    ADDTOBALANCE, WITHDRAWAL, TRANSFER, BONUS;
 }

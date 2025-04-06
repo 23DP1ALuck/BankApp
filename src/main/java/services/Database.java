@@ -76,11 +76,11 @@ public class Database {
             e.printStackTrace();
         }
     }
-    public void saveToJson(User TransactonMaker) throws IOException {
+    public void saveToJson(User user) throws IOException {
         jsonLoader();
         for (int i = 0; i < users.size(); i++) {
-            if(users.get(i).getUsername().equals(TransactonMaker.getUsername())){
-                users.set(i, TransactonMaker);
+            if(users.get(i).getAccountNumber().equals(user.getAccountNumber())){
+                users.set(i, user);
                 break;
             }
         }
@@ -88,7 +88,8 @@ public class Database {
             gson.toJson(users, fw);
         }
     }
-    public void deteteUser(User deletedUser) throws IOException{
+
+    public void deleteUser(User deletedUser) throws IOException{
         jsonLoader();
         for (int i = 0; i < users.size(); i++) {
             if(users.get(i).getUsername().equals(deletedUser.getUsername())){
@@ -100,12 +101,13 @@ public class Database {
             gson.toJson(users, fw);
         }
     }
+
     public BigDecimal moneyIn(User user) {
         BigDecimal totalIn = BigDecimal.ZERO;
         List<Transaction> transactions = user.getTransactions();
         for (Transaction transaction : transactions) {
             if ((transaction.getType() == TransactionType.TRANSFER || transaction.getType() ==
-                    TransactionType.ADDTOBALANCE) && transaction.amount.compareTo(BigDecimal.ZERO) > 0) {
+                    TransactionType.ADDTOBALANCE || transaction.getType() == TransactionType.BONUS) && transaction.amount.compareTo(BigDecimal.ZERO) > 0) {
                 totalIn = totalIn.add(transaction.amount);
             }
         }
@@ -128,6 +130,7 @@ public class Database {
                 return user;
             }
         }
-        return null;
+//        return null;
+        throw new IncorrectAccountNumber() {};
     }
 }

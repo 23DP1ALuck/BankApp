@@ -38,7 +38,7 @@
             </Label>
             <Pane layoutX="12.0" layoutY="149.0" prefHeight="43.0" prefWidth="195.0" style="-fx-background-color: rgba(255,255,255,0.1); -fx-background-radius: 20; -fx-border-color: white; -fx-border-radius: 20;">
                <children>
-                  <Label fx:id="accountNumber" layoutX="9.0" layoutY="-2.0" prefHeight="49.0" prefWidth="178.0" text="LV29HABA1234567891234" style="-fx-cursor: hand" textFill="WHITE">
+                  <Label fx:id="accountNumber" layoutX="9.0" layoutY="-2.0" prefHeight="49.0" prefWidth="178.0" style="-fx-cursor: hand" text="LV29HABA1234567891234" textFill="WHITE">
                      <font>
                         <Font name="Montserrat SemiBold" size="13.0" />
                      </font></Label>
@@ -73,14 +73,14 @@
                         </Label>
                      </children>
                   </Pane>
-                  <Pane id="navVaBankContainer" fx:id="navVaBankContainer" prefHeight="56.0" prefWidth="210.0" styleClass="nav">
+                  <Pane id="navVaBankContainer" fx:id="navSettingsContainer" prefHeight="56.0" prefWidth="210.0" styleClass="nav">
                      <children>
-                        <ImageView fitHeight="18.0" fitWidth="18.0" layoutX="11.0" layoutY="18.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="19.0" fitWidth="18.0" layoutX="14.0" layoutY="16.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@images/Icon.png" />
+                              <Image url="@images/settings.png" />
                            </image>
                         </ImageView>
-                        <Label layoutX="37.0" layoutY="16.0" prefHeight="17.0" prefWidth="129.0" text="Va Bank" textFill="WHITE">
+                        <Label layoutX="37.0" layoutY="16.0" prefHeight="17.0" prefWidth="129.0" text="Settings" textFill="WHITE">
                            <font>
                               <Font name="Montserrat SemiBold" size="12.0" />
                            </font>
