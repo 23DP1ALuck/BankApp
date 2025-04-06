@@ -1,5 +1,7 @@
 package org.example;
 import Exceptions.CurrentPasswordIncorrect;
+import Exceptions.NotValidPasswordException;
+import Exceptions.NotValidUsernameException;
 import javafx.beans.value.ChangeListener;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -9,6 +11,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import models.User;
 import services.Database;
+import services.Validator;
 
 import java.io.IOException;
 
@@ -108,13 +111,14 @@ public class SettingsStack {
                 && surnameField.getText().equals(surname)
                 && newPassField.getText().isBlank());
     }
-
+    Validator validator = new Validator();
     private void applyChanges(ActionEvent event) {
         userMessage.getStyleClass().clear();
         try {
             if (!newPassField.getText().isBlank()) {
                 setNewPassword();
             }
+            validator.validateUsername(usernameField.getText());
             currentUser.setUsername(usernameField.getText());
             currentUser.setName(nameField.getText());
             currentUser.setSurname(surnameField.getText());
@@ -124,7 +128,7 @@ public class SettingsStack {
             userMessage.setText("Account info changed.");
             userMessage.getStyleClass().add("completed");
             userMessage.setVisible(true);
-        } catch (CurrentPasswordIncorrect | IOException e) {
+        } catch (CurrentPasswordIncorrect | IOException | NotValidPasswordException | NotValidUsernameException e) {
             userMessage.getStyleClass().add("error");
             userMessage.setText(e.getMessage());
             userMessage.setVisible(true);
@@ -133,6 +137,7 @@ public class SettingsStack {
 
     private void setNewPassword() throws CurrentPasswordIncorrect{
         if (currPassField.getText().equals(currentUser.getPassword())) {
+            validator.validatePass(newPassField.getText());
             currentUser.setPassword(newPassField.getText());
         } else throw new CurrentPasswordIncorrect();
     }
