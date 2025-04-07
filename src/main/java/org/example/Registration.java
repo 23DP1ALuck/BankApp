@@ -97,6 +97,8 @@ public class Registration {
 
                 stage = (Stage)((Node) event.getSource()).getScene().getWindow();
                 scene = new Scene(root);
+                scene.getStylesheets().clear();
+                scene.getStylesheets().add(getClass().getResource("/styles/style.css").toExternalForm());
                 stage.setScene(scene);
                 stage.show();
             }

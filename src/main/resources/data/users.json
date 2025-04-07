@@ -416,5 +416,15 @@
     ],
     "firstTopUp": false,
     "addBonus": false
+  },
+  {
+    "username": "qweqeqweqwqq2",
+    "password": "qweqeqweqwqq2",
+    "name": "qweqeqweqwqq2",
+    "surname": "qweqeqweqwqq2",
+    "balance": 0.00,
+    "accountNumber": "LV29HABA8976067810014",
+    "transactions": [],
+    "firstTopUp": true
   }
 ]
