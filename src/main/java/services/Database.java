@@ -35,7 +35,7 @@ public class Database {
         }
         return instance;
     }
-    String filePath = "src/main/java/data/users.json";
+    String filePath = "src/main/resources/data/users.json";
     Gson gson = new GsonBuilder().registerTypeAdapter(LocalDateTime.class, new LocalDateAdapter()).setPrettyPrinting().create();
     public void addUserToDatabase(String login, String password, String name, String surname) throws UserExistsException, IOException{
         jsonLoader();

@@ -22,6 +22,8 @@ import javafx.stage.Stage;
 import services.Database;
 import Exceptions.FieldsAreBlankException;
 import Exceptions.UserExistsException;
+import services.Validator;
+
 import java.io.IOException;
 
 public class Registration {
@@ -119,15 +121,17 @@ public class Registration {
     }
 
     Database database = Database.getInstance();
-
+    Validator validator = new Validator();
     // sign up func
     private boolean signUp() throws UserExistsException, FieldsAreBlankException, IOException {
         userMessage.setText("");
         checkIfBlank();
         String username = this.usernameField.getText();
-        usernameValidation();
+//        usernameValidation();
+        validator.validateUsername(username);
         String password = this.passwordField.getText();
-        passwordValidation();
+//        passwordValidation();
+        validator.validatePass(password);
         String name = this.nameField.getText();
         String surname = this.surnameField.getText();
         database.addUserToDatabase(username, password, name, surname);
@@ -135,20 +139,7 @@ public class Registration {
         System.out.printf("login: %s, password: %s\n", username, password);
         return true;
     }
-//    username validation
-    private void usernameValidation() {
-//        username must be 8-20 characters, no _ or . at start/end, no double _ or .
-        if (!usernameField.getText().matches("^(?=.{8,20}$)(?![_.])(?!.*[_.]{2})[a-zA-Z0-9._]+(?<![_.])$")){
-            throw new NotValidUsernameException();
-        }
-    }
-//    password validation
-    private void passwordValidation() {
-//        Password must be at least 8 characters long and include at least one letter and one number
-        if(!passwordField.getText().matches("^(?=.*[A-Za-z])(?=.*\\d).{8,}$")){
-            throw new NotValidPasswordException();
-        }
-    }
+
     // blank field check
     private void checkIfBlank() throws FieldsAreBlankException {
         if(this.usernameField.getText().isBlank() || this.passwordField.getText().isBlank()){
