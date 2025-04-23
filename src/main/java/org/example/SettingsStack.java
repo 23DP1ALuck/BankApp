@@ -1,13 +1,17 @@
 package org.example;
+
 import Exceptions.CurrentPasswordIncorrect;
 import Exceptions.NotValidPasswordException;
 import Exceptions.NotValidUsernameException;
+import Exceptions.UserExistsException;
 import javafx.beans.value.ChangeListener;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import models.User;
 import services.Database;
@@ -75,7 +79,7 @@ public class SettingsStack {
         showNewPassButton.addEventFilter(MouseEvent.MOUSE_RELEASED, e -> {
             Image show = new Image(getClass().getResourceAsStream("/images/show.png"));
             showNewPassImage.setImage(show);
-            newPassField.setPromptText("Current password");
+            newPassField.setPromptText("New password");
             newPassField.setText(newPass);
         });
 
@@ -85,6 +89,14 @@ public class SettingsStack {
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
+        });
+
+        applyButton.sceneProperty().addListener((observable, oldScene, newScene) -> {
+            newScene.addEventFilter(KeyEvent.KEY_PRESSED, event -> {
+                if (event.getCode() == KeyCode.ENTER) {
+                    applyButton.fire();
+                }
+            });
         });
     }
 
@@ -128,7 +140,7 @@ public class SettingsStack {
             userMessage.setText("Account info changed.");
             userMessage.getStyleClass().add("completed");
             userMessage.setVisible(true);
-        } catch (CurrentPasswordIncorrect | IOException | NotValidPasswordException | NotValidUsernameException e) {
+        } catch (CurrentPasswordIncorrect | IOException | NotValidPasswordException | NotValidUsernameException | UserExistsException e) {
             userMessage.getStyleClass().add("error");
             userMessage.setText(e.getMessage());
             userMessage.setVisible(true);

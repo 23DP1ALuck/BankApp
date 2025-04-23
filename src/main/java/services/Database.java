@@ -39,17 +39,20 @@ public class Database {
     Gson gson = new GsonBuilder().registerTypeAdapter(LocalDateTime.class, new LocalDateAdapter()).setPrettyPrinting().create();
     public void addUserToDatabase(String login, String password, String name, String surname) throws UserExistsException, IOException{
         jsonLoader();
-        for (User user : users) {
-            if(user.getUsername().equals(login)){
-                throw new UserExistsException();
-            }
-        }
         users.add(new User(login, password,  name, surname));
         try(FileWriter fw = new FileWriter(filePath)) {
             gson.toJson(users, fw);
         }
     }
+    public void checkUsername(String username) throws UserExistsException {
+        jsonLoader();
+        for (User user : users){
+            if(user.getUsername().equals(username)){
+                throw new UserExistsException();
+            }
+        }
 
+    }
     public User checkUser(String login, String password) throws NoSuchUserException{
         jsonLoader();
         for (User user : users) {

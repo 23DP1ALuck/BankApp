@@ -2,6 +2,6 @@ package Exceptions;
 
 public class UserExistsException extends Exception{
     public UserExistsException(){
-        super("User already exists");
+        super("This username is already taken.");
     }
 }

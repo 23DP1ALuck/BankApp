@@ -90,7 +90,7 @@
          </graphic>
       </Button>
       <Button fx:id="applyButton" layoutX="39.0" layoutY="374.0" mnemonicParsing="false" prefHeight="57.0" prefWidth="990.0" style="-fx-background-color: #FFFFFF; -fx-background-radius: 12.5;" text="Apply changes" />
-        <Label fx:id="userMessage" alignment="CENTER" layoutX="382.0" layoutY="450.0" prefHeight="39.0" prefWidth="300.0" />
+        <Label fx:id="userMessage" alignment="CENTER" contentDisplay="CENTER" layoutX="362.0" layoutY="450.0" prefHeight="39.0" prefWidth="340.0" textAlignment="CENTER" />
       <Label layoutX="56.0" layoutY="520.0" prefHeight="51.0" prefWidth="281.0" text="Delete account" textFill="WHITE">
          <font>
             <Font name="Montserrat SemiBold" size="25.0" />
