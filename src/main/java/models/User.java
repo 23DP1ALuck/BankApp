@@ -149,7 +149,7 @@ public class User {
         } else {
             List<Transaction> searched = new ArrayList<>();
             for (Transaction transaction : transactions) {
-                if (transaction.getAmount().toString().contains(search) || transaction.date().contains(search) || transaction.getType().toString().contains(search.toUpperCase())) {
+                if (transaction.getAmount().toString().contains(search) || transaction.date().contains(search) || transaction.getDate().toString().contains(search) || transaction.getType().toString().contains(search.toUpperCase())) {
                     searched.add(transaction);
                 }
             }

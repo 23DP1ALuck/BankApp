@@ -416,5 +416,94 @@
     ],
     "firstTopUp": false,
     "addBonus": false
+  },
+  {
+    "username": "VaBankUser2",
+    "password": "user1234",
+    "name": "Another",
+    "surname": "User",
+    "balance": 550.00,
+    "accountNumber": "LV29HABA6404524866553",
+    "transactions": [
+      {
+        "amount": 50.00,
+        "type": "TRANSFER",
+        "date": "2025-04-08 14:59"
+      },
+      {
+        "amount": 1000.00,
+        "type": "ADDTOBALANCE",
+        "date": "2025-04-08 14:59"
+      },
+      {
+        "amount": 100.00,
+        "type": "BONUS",
+        "date": "2025-04-08 14:59"
+      },
+      {
+        "amount": -600.00,
+        "type": "TRANSFER",
+        "date": "2025-04-08 14:59"
+      }
+    ],
+    "firstTopUp": false,
+    "addBonus": false
+  },
+  {
+    "username": "VaBankUser",
+    "password": "user1234",
+    "name": "Happy",
+    "surname": "User",
+    "balance": 1417.34,
+    "accountNumber": "LV29HABA009077060553",
+    "transactions": [
+      {
+        "amount": 500.00,
+        "type": "ADDTOBALANCE",
+        "date": "2025-03-08 14:13"
+      },
+      {
+        "amount": 50.00,
+        "type": "BONUS",
+        "date": "2025-03-08 14:13"
+      },
+      {
+        "amount": -200.00,
+        "type": "WITHDRAWAL",
+        "date": "2025-03-10 17:28"
+      },
+      {
+        "amount": 333.33,
+        "type": "ADDTOBALANCE",
+        "date": "2025-03-26 14:00"
+      },
+      {
+        "amount": 100.00,
+        "type": "ADDTOBALANCE",
+        "date": "2025-04-01 18:30"
+      },
+      {
+        "amount": -15.99,
+        "type": "WITHDRAWAL",
+        "date": "2025-04-08 12:00"
+      },
+      {
+        "amount": -50.00,
+        "type": "TRANSFER",
+        "date": "2025-04-09 09:59"
+      },
+      {
+        "amount": 600.00,
+        "type": "TRANSFER",
+        "date": "2025-04-13 21:21"
+      },
+      {
+        "amount": 100.00,
+        "type": "ADDTOBALANCE",
+        "date": "2025-04-08 15:20"
+      }
+    ],
+    "firstTopUp": false,
+    "addBonus": false
   }
 ]

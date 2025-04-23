@@ -127,10 +127,10 @@ public class Registration {
         userMessage.setText("");
         checkIfBlank();
         String username = this.usernameField.getText();
-//        usernameValidation();
+//        Username validation (regex) and check if username is already taken
         validator.validateUsername(username);
         String password = this.passwordField.getText();
-//        passwordValidation();
+//        password validation (regex)
         validator.validatePass(password);
         String name = this.nameField.getText();
         String surname = this.surnameField.getText();
