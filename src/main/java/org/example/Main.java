@@ -23,7 +23,6 @@ public class Main extends Application {
         scene.getStylesheets().add(getClass().getResource("/styles/style.css").toExternalForm());
         Image icon = new Image(getClass().getResourceAsStream("/images/VAbank.png"));
         Font font = Font.loadFont(getClass().getResourceAsStream("/fonts/Montserrat-SemiBold.ttf"), 12);
-        System.out.println(font != null ? "Font loaded: " + font.getName() : "Font not found!");
         stage.getIcons().add(icon);
         stage.setTitle("VA Bank");
         stage.setResizable(false);

@@ -15,28 +15,24 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
+
 import models.User;
-import services.Database;
+
 import java.io.IOException;
 
 public class Dashboard {
     private User currentUser;
     private Stage stage;
     private Scene scene;
-    private Parent root;
 
     @FXML
-    StackPane stackPaneContainer;
+    private StackPane stackPaneContainer;
     @FXML
-    Label accountNumber;
+    private Label accountNumber, username, nameAndLastName;
     @FXML
-    Label username;
+    private Pane navDashboardContainer, navPaymentContainer, navSettingsContainer;
     @FXML
-    Label nameAndLastName;
-    @FXML
-    Pane navDashboardContainer, navPaymentContainer, navSettingsContainer;
-    @FXML
-    Button logOutButton;
+    private Button logOutButton;
 
     @FXML
     private void initialize() {
@@ -52,16 +48,20 @@ public class Dashboard {
             clipboard.setContent(content);
         });
 
-//        hover for logout button
+        // hover for logout button
         logOutButton.setOnMouseEntered(e -> logOutButton.setStyle("-fx-background-color:  rgba(255,255,255,0.25);-fx-background-radius: 15;"));
         logOutButton.setOnMouseExited(e -> logOutButton.setStyle("-fx-background-color:  rgba(255,255,255,0.2);-fx-background-radius: 15;"));
     }
 
-    public void setUser(User user) { this.currentUser = user; }
+    public void setUser(User user) {
+        this.currentUser = user;
+    }
     public void setHelloUsername(String usersname) {
         username.setText("@"+usersname);
     }
-    public void setNameAndLastName(String name, String surname) { nameAndLastName.setText(name + " " + surname); }
+    public void setNameAndLastName(String name, String surname) {
+        nameAndLastName.setText(name + " " + surname);
+    }
     public void setAccountNumber(String accountNum) {
         accountNumber.setText(accountNum);
     }
@@ -69,13 +69,14 @@ public class Dashboard {
     // loads chosen stackPane
     public void loadStackPane(String stackName) throws IOException {
         String fxml;
-        if (stackName.equals("dashboard")) {
-            fxml = "/dashboardStack.fxml";
-        } else if (stackName.equals("payment")) {
-            fxml = "/paymentStack.fxml";
-        } else if (stackName.equals("settings")) {
-            fxml = "/settingsStack.fxml";
-        } else return;
+        switch (stackName) {
+            case "dashboard" -> fxml = "/dashboardStack.fxml";
+            case "payment" -> fxml = "/paymentStack.fxml";
+            case "settings" -> fxml = "/settingsStack.fxml";
+            default -> {
+                return;
+            }
+        }
 
         FXMLLoader loader = new FXMLLoader(getClass().getResource(fxml));
         AnchorPane newContent = loader.load();
@@ -105,31 +106,30 @@ public class Dashboard {
     }
 
     // shows dashboard stackPane
-    public void switchToDashboard(MouseEvent event) {
+    private void switchToDashboard(MouseEvent event) {
         try {
             loadStackPane("dashboard");
         } catch (IOException e) {}
 
     }
     // shows payment stackPane
-    public void switchToPayment(MouseEvent event) {
+    private void switchToPayment(MouseEvent event) {
         try {
             loadStackPane("payment");
         } catch (IOException e) {}
     }
     // shows settings stackPane
-    public void switchToSettings(MouseEvent event) {
+    private void switchToSettings(MouseEvent event) {
         try {
             loadStackPane("settings");
         } catch (IOException e) {}
     }
+
     public void logOut(ActionEvent event) {
         try {
             Parent root = FXMLLoader.load(getClass().getResource("/login.fxml"));
             stage = (Stage)((Node)event.getSource()).getScene().getWindow();
             scene = new Scene(root);
-//            stage.setWidth(603);
-//            stage.setHeight(550);
             stage.centerOnScreen();
             scene.getStylesheets().clear();
             scene.getStylesheets().add(getClass().getResource("/styles/style.css").toExternalForm());

@@ -1,6 +1,5 @@
 package org.example;
 
-import enums.TransactionType;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -8,18 +7,16 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
+
 import models.Transaction;
 import models.User;
 import services.Database;
+
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
-
 import java.io.IOException;
-import java.math.BigDecimal;
-import java.util.ArrayList;
 import java.util.List;
 
 public class DashboardStack {
@@ -27,26 +24,19 @@ public class DashboardStack {
     private User currentUser;
     private String activeSort = "sortByDateUp";
     @FXML
-    Label balance;
+    private Label balance, moneyIn, moneyOut;
     @FXML
-    Label moneyIn;
+    private TextField searchField;
     @FXML
-    Label moneyOut;
+    private Button sortByDate, sortByPrice;
     @FXML
-    TextField searchField;
+    private ImageView priceArrow, dateArrow;
     @FXML
-    Button sortByDate;
-    @FXML
-    Button sortByPrice;
-    @FXML
-    ImageView priceArrow;
-    @FXML
-    ImageView dateArrow;
-    @FXML
-    VBox vbox;
-    FXMLLoader loader;
+    private VBox vbox;
+
     @FXML
     private void initialize() {
+        // button action listeners
         sortByDate.setOnAction(event -> {
             try {
                 dateButton(event);
@@ -83,61 +73,70 @@ public class DashboardStack {
         setMoneyOut();
     }
 
-    public void setBalanceValue(){
+    private void setBalanceValue() {
         balance.setText(currentUser.getBalance() + "€");
     }
-    public void setMoneyIn() { moneyIn.setText(db.moneyIn(currentUser).toString() + "€");}
-    public void setMoneyOut() { moneyOut.setText(db.moneyOut(currentUser).toString() + "€");}
+    private void setMoneyIn() {
+        moneyIn.setText(db.moneyIn(currentUser).toString() + "€");
+    }
+    private void setMoneyOut() {
+        moneyOut.setText(db.moneyOut(currentUser).toString() + "€");
+    }
 
-    public void dateButton(ActionEvent event) throws IOException { changeToDate(); }
-    public void priceButton(ActionEvent event) throws IOException { changeToPrice(); }
+    // methods with ActionEvent to assign buttons to corresponding methods
+    private void dateButton(ActionEvent event) throws IOException { changeToDate(); }
+    private void priceButton(ActionEvent event) throws IOException { changeToPrice(); }
 
-    public void changeToDate() throws IOException {
+    private void changeToDate() throws IOException {
         if (sortByDate.getStyleClass().getFirst().equals("activeButton")) {
-            if (dateArrow.getStyleClass().getFirst().equals("arrowDown")) {
+            if (activeSort.equals("sortByDateDown")) {
                 dateUp();
             } else {
                 dateDown();
             }
         } else {
             dateUp();
+
+            sortByDate.getStyleClass().clear();
+            sortByDate.getStyleClass().add("activeButton");
+            dateArrow.getStyleClass().add("activeArrow");
+
+            sortByPrice.getStyleClass().clear();
+            sortByPrice.getStyleClass().add("inactiveButton");
+            priceArrow.getStyleClass().clear();
+            priceArrow.getStyleClass().add("inactiveArrow");
         }
 
-        sortByDate.getStyleClass().clear();
-        sortByDate.getStyleClass().add("activeButton");
-        dateArrow.getStyleClass().add("activeArrow");
-
-        sortByPrice.getStyleClass().clear();
-        sortByPrice.getStyleClass().add("inactiveButton");
-
-        priceArrow.getStyleClass().add("inactiveArrow");
     }
-    public void changeToPrice() throws IOException {
+    private void changeToPrice() throws IOException {
         if (sortByPrice.getStyleClass().getFirst().equals("activeButton")) {
-            if (priceArrow.getStyleClass().getFirst().equals("arrowDown")) {
+            if (activeSort.equals("sortByPriceDown")) {
                 priceUp();
             } else {
                 priceDown();
             }
         } else {
             priceUp();
+
+            sortByPrice.getStyleClass().clear();
+            sortByPrice.getStyleClass().add("activeButton");
+            priceArrow.getStyleClass().add("activeArrow");
+
+            sortByDate.getStyleClass().clear();
+            sortByDate.getStyleClass().add("inactiveButton");
+            dateArrow.getStyleClass().clear();
+            dateArrow.getStyleClass().add("inactiveArrow");
         }
 
-        sortByPrice.getStyleClass().clear();
-        sortByPrice.getStyleClass().add("activeButton");
-        priceArrow.getStyleClass().add("activeArrow");
-
-        sortByDate.getStyleClass().clear();
-        sortByDate.getStyleClass().add("inactiveButton");
-        dateArrow.getStyleClass().add("inactiveArrow");
     }
-//    clear vbox when new sort method called
-    public void clearVBox(){
+
+    // clear vbox when new sort method called
+    private void clearVBox(){
         vbox.getChildren().clear();
     }
 
-    //    sort by date descending
-    public void dateDown() throws IOException {
+    // sort by date descending
+    private void dateDown() throws IOException {
         dateArrow.getStyleClass().clear();
         dateArrow.getStyleClass().add("arrowDown");
         sortByDateDown();
@@ -155,8 +154,9 @@ public class DashboardStack {
             transactionController.setTransactionData(sortedTransactions.get(i));
         }
     }
+
     //    sort by date ascending
-    public void dateUp() throws IOException {
+    private void dateUp() throws IOException {
         dateArrow.getStyleClass().clear();
         currentUser.getTransactions().reversed();
         sortByDateUp();
@@ -174,8 +174,9 @@ public class DashboardStack {
             transactionController.setTransactionData(sortedTransactions.get(i));
         }
     }
+
     //    sort by amount descending
-    public void priceDown() throws IOException {
+    private void priceDown() throws IOException {
         priceArrow.getStyleClass().clear();
         priceArrow.getStyleClass().add("arrowDown");
         sortByPriceDown();
@@ -193,8 +194,9 @@ public class DashboardStack {
             transactionController.setTransactionData(sortedTransactions.get(i));
         }
     }
+
     //    sort by amount ascending
-    public void priceUp() throws IOException {
+    private void priceUp() throws IOException {
         priceArrow.getStyleClass().clear();
         sortByPriceUp();
         activeSort = "sortByPriceUp";

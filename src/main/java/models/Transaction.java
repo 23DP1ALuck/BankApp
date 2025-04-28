@@ -8,8 +8,8 @@ import java.time.LocalDateTime;
 
 public class Transaction {
     public BigDecimal amount;
-    TransactionType type;
-    LocalDateTime date;
+    public TransactionType type;
+    public LocalDateTime date;
 
     public Transaction(BigDecimal amount, TransactionType type) {
         this.amount = amount;
@@ -17,14 +17,19 @@ public class Transaction {
         this.date = LocalDateTime.now().withSecond(0).withNano(0);
     }
 
-    public BigDecimal getAmount() { return amount; }
+    public BigDecimal getAmount() {
+        return amount;
+    }
 
-    public LocalDateTime getDate() { return date; }
+    public LocalDateTime getDate() {
+        return date;
+    }
 
     public TransactionType getType() {
         return type;
     }
 
+    // another getter for searching
     public String date() { return String.valueOf(date.getYear()) + date.getMonthValue() + date.getDayOfMonth() + date.getHour() + date.getMinute(); }
 
     @Override
