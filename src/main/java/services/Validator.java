@@ -3,7 +3,6 @@ package services;
 import Exceptions.NotValidPasswordException;
 import Exceptions.NotValidUsernameException;
 import Exceptions.UserExistsException;
-import models.User;
 
 public class Validator {
     Database db = Database.getInstance();

@@ -4,8 +4,7 @@ import java.util.*;
 
 public class AccountNumber {
     private static Set<String> accountNumbers = new HashSet<>();
-    public AccountNumber() {
-    }
+    // unique account number for every user
     public static String accountNumberGenerator(){
         Random random = new Random();
         StringBuilder accountNumber = new StringBuilder("LV29HABA");
