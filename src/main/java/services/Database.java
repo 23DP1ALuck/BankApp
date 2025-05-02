@@ -17,6 +17,7 @@ import java.io.IOException;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 
 public class Database {
@@ -138,5 +139,12 @@ public class Database {
             }
         }
         throw new IncorrectAccountNumber() {};
+    }
+    public HashSet<String> getAllAccNumbers() {
+        HashSet<String> accNumbers = new HashSet<>();
+        for(User user : users){
+            accNumbers.add(user.getAccountNumber());
+        }
+        return accNumbers;
     }
 }

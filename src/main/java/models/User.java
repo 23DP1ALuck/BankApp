@@ -1,10 +1,11 @@
 package models;
 
 import Exceptions.CannotSendMoneyToYourself;
+import Exceptions.IncorrectAccountNumber;
 import Exceptions.NotPositiveAmountException;
 import Exceptions.CannotWithdrawException;
-
 import enums.TransactionType;
+import services.Database;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
@@ -20,6 +21,7 @@ public class User {
     private String accountNumber;
     private List<Transaction> transactions;
     private Boolean firstTopUp;
+    private Boolean addBonus;
 
     public User(String username, String password, String name, String surname) {
         this.username = username;
@@ -30,17 +32,29 @@ public class User {
         this.accountNumber = AccountNumber.accountNumberGenerator();
         this.transactions = new ArrayList<>();
         this.firstTopUp = true;
+        this.addBonus = false;
+    }
+    // For unit testing
+    public void setAddBonus(Boolean addBonus) {
+        this.addBonus = addBonus;
+    }
+    // For unit testing
+    public void setFirstTopUp(Boolean firstTopUp) {
+        this.firstTopUp = firstTopUp;
     }
 
     public void setUsername(String username) {
         this.username = username;
     }
+
     public void setPassword(String password) {
         this.password = password;
     }
+
     public void setName(String name) {
         this.name = name;
     }
+
     public void setSurname(String surname) {
         this.surname = surname;
     }
@@ -66,11 +80,8 @@ public class User {
     public BigDecimal getBalance() {
         return balance;
     }
-    public List<Transaction> getTransactions() {
-        return transactions;
-    }
+    public List<Transaction> getTransactions() { return transactions; }
 
-    private Boolean addBonus;
     // add to balance and withdraw transactions
     public void performTransaction(Transaction transaction) throws NotPositiveAmountException {
         if (transaction.amount.compareTo(BigDecimal.ZERO) > 0) {
@@ -123,9 +134,9 @@ public class User {
             }
         } else throw new NotPositiveAmountException();
     }
-
-    // bubble sort by amount
+// bubble sort by amount
     public List<Transaction> sortTransactionsByAmountAscending(String search) {
+//        make copy of transactions
         List<Transaction> sortedTransactions = searchedTransactions(search);
         for (int i = 0; i < sortedTransactions.size() - 1; i++) {
             for(int j = 0; j < sortedTransactions.size() - 1; j++) {
@@ -139,7 +150,7 @@ public class User {
         System.out.println(sortedTransactions);
         return sortedTransactions;
     }
-    // reversed sort by amount
+//    reversed sort by amount
     public List<Transaction> sortTransactionsByAmountDescending(String search) {
         return sortTransactionsByAmountAscending(search).reversed();
     }
@@ -151,7 +162,7 @@ public class User {
         } else {
             List<Transaction> searched = new ArrayList<>();
             for (Transaction transaction : transactions) {
-                if (transaction.getAmount().toString().contains(search) || transaction.date().contains(search) || transaction.getDate().toString().contains(search) || transaction.getType().toString().contains(search.toUpperCase())) {
+                if (transaction.getAmount().toString().contains(search) || transaction.date().contains(search) || transaction.getType().toString().contains(search.toUpperCase())) {
                     searched.add(transaction);
                 }
             }
