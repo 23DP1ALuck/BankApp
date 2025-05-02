@@ -1,9 +1,11 @@
 package models;
 
+import services.Database;
+
 import java.util.*;
 
 public class AccountNumber {
-    private static Set<String> accountNumbers = new HashSet<>();
+    private static Set<String> accountNumbers = Database.getInstance().getAllAccNumbers();
     // unique account number for every user
     public static String accountNumberGenerator(){
         Random random = new Random();

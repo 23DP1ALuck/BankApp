@@ -159,5 +159,42 @@
     ],
     "firstTopUp": false,
     "addBonus": false
+  },
+  {
+    "username": "qweqeqweqwqq2",
+    "password": "qweqeqweqwqq2",
+    "name": "qweqeqweqwqq2",
+    "surname": "qweqeqweqwqq2",
+    "balance": 0.00,
+    "accountNumber": "LV29HABA8976067810014",
+    "transactions": [],
+    "firstTopUp": true
+  },
+  {
+    "username": "asdasasd",
+    "password": "asdasasd12",
+    "name": "asdasasd",
+    "surname": "asdasasd",
+    "balance": 1000.00,
+    "accountNumber": "LV29HABA0268365186771",
+    "transactions": [
+      {
+        "amount": 1000.00,
+        "type": "ADDTOBALANCE",
+        "date": "2025-05-01 19:28"
+      },
+      {
+        "amount": 100.00,
+        "type": "BONUS",
+        "date": "2025-05-01 19:28"
+      },
+      {
+        "amount": -100.00,
+        "type": "WITHDRAWAL",
+        "date": "2025-05-01 19:28"
+      }
+    ],
+    "firstTopUp": false,
+    "addBonus": false
   }
 ]
