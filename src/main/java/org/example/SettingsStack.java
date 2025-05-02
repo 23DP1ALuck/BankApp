@@ -1,14 +1,19 @@
 package org.example;
+
 import Exceptions.CurrentPasswordIncorrect;
 import Exceptions.NotValidPasswordException;
 import Exceptions.NotValidUsernameException;
+import Exceptions.UserExistsException;
 import javafx.beans.value.ChangeListener;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
+
 import models.User;
 import services.Database;
 import services.Validator;
@@ -18,9 +23,6 @@ import java.io.IOException;
 public class SettingsStack {
     private Database db = Database.getInstance();
     private User currentUser;
-    private String username;
-    private String name;
-    private String surname;
     private Dashboard dashboardController;
     private String currPass;
     private String newPass;
@@ -38,6 +40,7 @@ public class SettingsStack {
 
     @FXML
     private void initialize() {
+        // button action listeners
         applyButton.setOnAction(this::applyChanges);
 
         ChangeListener<String> changeListener = (obs, oldVal, newVal) -> {
@@ -75,7 +78,7 @@ public class SettingsStack {
         showNewPassButton.addEventFilter(MouseEvent.MOUSE_RELEASED, e -> {
             Image show = new Image(getClass().getResourceAsStream("/images/show.png"));
             showNewPassImage.setImage(show);
-            newPassField.setPromptText("Current password");
+            newPassField.setPromptText("New password");
             newPassField.setText(newPass);
         });
 
@@ -86,17 +89,22 @@ public class SettingsStack {
                 throw new RuntimeException(e);
             }
         });
+
+        applyButton.sceneProperty().addListener((observable, oldScene, newScene) -> {
+            newScene.addEventFilter(KeyEvent.KEY_PRESSED, event -> {
+                if (event.getCode() == KeyCode.ENTER) {
+                    applyButton.fire();
+                }
+            });
+        });
     }
 
     public void setUser(User user) {
         currentUser = user;
 
-        username = currentUser.getUsername();
-        usernameField.setText(username);
-        name = currentUser.getName();
-        nameField.setText(name);
-        surname = currentUser.getSurname();
-        surnameField.setText(surname);
+        usernameField.setText(currentUser.getUsername());
+        nameField.setText(currentUser.getName());
+        surnameField.setText(currentUser.getSurname());
 
         updateApplyButtonState();
     }
@@ -105,43 +113,55 @@ public class SettingsStack {
         dashboardController = dashboard;
     }
 
+    // button is disabled if account credentials are the same as before
     private void updateApplyButtonState() {
-        applyButton.setDisable(usernameField.getText().equals(username)
-                && nameField.getText().equals(name)
-                && surnameField.getText().equals(surname)
+        applyButton.setDisable(usernameField.getText().equals(currentUser.getUsername())
+                && nameField.getText().equals(currentUser.getName())
+                && surnameField.getText().equals(currentUser.getSurname())
                 && newPassField.getText().isBlank());
     }
+
     Validator validator = new Validator();
+
     private void applyChanges(ActionEvent event) {
         userMessage.getStyleClass().clear();
         try {
             if (!newPassField.getText().isBlank()) {
                 setNewPassword();
             }
-            validator.validateUsername(usernameField.getText());
-            currentUser.setUsername(usernameField.getText());
+            if (!usernameField.getText().equals(currentUser.getUsername())) {
+                validator.validateUsername(usernameField.getText());
+                currentUser.setUsername(usernameField.getText());
+            }
             currentUser.setName(nameField.getText());
             currentUser.setSurname(surnameField.getText());
+
             db.saveToJson(currentUser);
+
+            updateApplyButtonState();
+            currPassField.clear();
+            newPassField.clear();
             dashboardController.setHelloUsername(usernameField.getText());
             dashboardController.setNameAndLastName(nameField.getText(), surnameField.getText());
+
             userMessage.setText("Account info changed.");
             userMessage.getStyleClass().add("completed");
             userMessage.setVisible(true);
-        } catch (CurrentPasswordIncorrect | IOException | NotValidPasswordException | NotValidUsernameException e) {
+        } catch (CurrentPasswordIncorrect | IOException | NotValidPasswordException | NotValidUsernameException | UserExistsException e) {
             userMessage.getStyleClass().add("error");
             userMessage.setText(e.getMessage());
             userMessage.setVisible(true);
         }
     }
 
-    private void setNewPassword() throws CurrentPasswordIncorrect{
+    private void setNewPassword() throws CurrentPasswordIncorrect {
         if (currPassField.getText().equals(currentUser.getPassword())) {
             validator.validatePass(newPassField.getText());
             currentUser.setPassword(newPassField.getText());
         } else throw new CurrentPasswordIncorrect();
     }
 
+    // delete account button with confirmation window
     private void deleteAccount(ActionEvent event) throws IOException {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.getDialogPane().getStylesheets().add(getClass().getResource("/styles/style.css").toExternalForm());

@@ -4,121 +4,69 @@
     "password": "Qwerty21",
     "name": "Artjoms",
     "surname": "Luckis",
-    "balance": 4000.00,
+    "balance": 5664.99,
     "accountNumber": "LV29HABA2763326627601",
     "transactions": [
       {
-        "amount": 300.00,
-        "type": "TRANSFER"
+        "amount": 30.00,
+        "type": "TRANSFER",
+        "date": "2025-03-26 23:33"
       },
       {
         "amount": 635.00,
-        "type": "TRANSFER"
+        "type": "TRANSFER",
+        "date": "2025-03-27 12:13"
       },
       {
         "amount": 0.55,
-        "type": "TRANSFER"
+        "type": "TRANSFER",
+        "date": "2025-03-27 20:10"
       },
       {
         "amount": 0.44,
-        "type": "TRANSFER"
+        "type": "TRANSFER",
+        "date": "2025-03-27 22:55"
       },
       {
         "amount": 1000.00,
-        "type": "TRANSFER"
+        "type": "TRANSFER",
+        "date": "2025-04-02 16:31"
       },
       {
         "amount": 999.00,
-        "type": "TRANSFER"
+        "type": "TRANSFER",
+        "date": "2025-04-03 21:44"
       },
       {
         "amount": 1000.00,
-        "type": "TRANSFER"
+        "type": "TRANSFER",
+        "date": "2025-04-10 23:33"
       },
       {
         "amount": 2000.00,
-        "type": "TRANSFER"
+        "type": "TRANSFER",
+        "date": "2025-04-16 21:08"
       }
-    ]
+    ],
+    "firstTopUp": false,
+    "addBonus": false
   },
   {
-    "username": "a",
-    "password": "a",
-    "name": "Test",
-    "surname": "Testov",
-    "balance": 295.00,
-    "accountNumber": "LV29HABA2424246627601",
-    "transactions": [
-      {
-        "amount": -300.00,
-        "type": "TRANSFER"
-      },
-      {
-        "amount": -635.00,
-        "type": "TRANSFER"
-      },
-      {
-        "amount": -0.55,
-        "type": "TRANSFER"
-      },
-      {
-        "amount": -0.44,
-        "type": "TRANSFER"
-      },
-      {
-        "amount": 1000.00,
-        "type": "ADDTOBALANCE"
-      },
-      {
-        "amount": -1000.00,
-        "type": "TRANSFER"
-      },
-      {
-        "amount": 1000.00,
-        "type": "ADDTOBALANCE"
-      },
-      {
-        "amount": -0.01,
-        "type": "WITHDRAWAL"
-      },
-      {
-        "amount": -999.00,
-        "type": "TRANSFER"
-      },
-      {
-        "amount": -1000.00,
-        "type": "TRANSFER"
-      },
-      {
-        "amount": 2000.00,
-        "type": "ADDTOBALANCE"
-      },
-      {
-        "amount": -2000.00,
-        "type": "TRANSFER"
-      },
-      {
-        "amount": 1000.00,
-        "type": "ADDTOBALANCE"
-      },
-      {
-        "amount": -150.00,
-        "type": "WITHDRAWAL",
-        "date": "2025-03-25 21:28"
-      }
-    ]
-  },
-  {
-    "username": "marats2006",
-    "password": "maratoni06",
+    "username": "marat2006",
+    "password": "marat2006",
     "name": "Marats",
     "surname": "Razživins",
-    "balance": 1152.00,
+    "balance": 204.00,
     "accountNumber": "LV29HABA7727689278530",
     "transactions": [
       {
         "amount": 520.00,
         "type": "TRANSFER",
+        "date": "2025-03-26 23:33"
+      },
+      {
+        "amount": 52.00,
+        "type": "BONUS",
         "date": "2025-03-26 23:33"
       },
       {
@@ -139,279 +87,74 @@
       {
         "amount": -100.00,
         "type": "WITHDRAWAL",
-        "date": "2025-03-29 02:23"
+        "date": "2025-04-10 13:53"
       },
       {
         "amount": 11.00,
         "type": "ADDTOBALANCE",
-        "date": "2025-03-29 02:23"
+        "date": "2025-04-19 21:58"
       },
       {
         "amount": -11.00,
         "type": "WITHDRAWAL",
-        "date": "2025-03-29 02:23"
-      }
-    ]
-  },
-  {
-    "username": "testTestik21",
-    "password": "test$Testik12",
-    "name": "Test",
-    "surname": "Testikov",
-    "balance": 7711.12,
-    "accountNumber": "LV29HABA3380489509179",
-    "transactions": [
-      {
-        "amount": 100.00,
-        "type": "ADDTOBALANCE",
-        "date": "2025-03-26 19:33"
-      },
-      {
-        "amount": -200.00,
-        "type": "WITHDRAWAL",
-        "date": "2025-03-26 19:34"
-      },
-      {
-        "amount": 300.00,
-        "type": "ADDTOBALANCE",
-        "date": "2025-03-26 19:34"
-      },
-      {
-        "amount": 400.00,
-        "type": "ADDTOBALANCE",
-        "date": "2025-03-26 19:34"
-      },
-      {
-        "amount": -500.00,
-        "type": "WITHDRAWAL",
-        "date": "2025-03-26 19:34"
-      },
-      {
-        "amount": 500.00,
-        "type": "ADDTOBALANCE",
-        "date": "2025-03-26 23:31"
-      },
-      {
-        "amount": -520.00,
-        "type": "TRANSFER",
-        "date": "2025-03-26 23:33"
-      },
-      {
-        "amount": -111.00,
-        "type": "WITHDRAWAL",
-        "date": "2025-03-26 23:56"
-      },
-      {
-        "amount": 7777.12,
-        "type": "TRANSFER",
-        "date": "2025-03-29 00:28"
-      },
-      {
-        "amount": 1000.00,
-        "type": "TRANSFER",
-        "date": "2025-03-29 00:34"
-      },
-      {
-        "amount": 111.00,
-        "type": "ADDTOBALANCE",
-        "date": "2025-03-29 00:37"
-      },
-      {
-        "amount": -1111.00,
-        "type": "TRANSFER",
-        "date": "2025-03-29 00:37"
-      },
-      {
-        "amount": -1111.00,
-        "type": "TRANSFER",
-        "date": "2025-03-29 00:38"
-      },
-      {
-        "amount": 11.00,
-        "type": "ADDTOBALANCE",
-        "date": "2025-03-29 02:25"
-      },
-      {
-        "amount": 11.00,
-        "type": "ADDTOBALANCE",
-        "date": "2025-03-29 02:26"
-      },
-      {
-        "amount": 11.00,
-        "type": "ADDTOBALANCE",
-        "date": "2025-03-29 02:28"
-      },
-      {
-        "amount": 11.00,
-        "type": "ADDTOBALANCE",
-        "date": "2025-03-29 02:29"
-      },
-      {
-        "amount": 122.00,
-        "type": "ADDTOBALANCE",
-        "date": "2025-03-29 02:31"
-      },
-      {
-        "amount": -100.00,
-        "type": "WITHDRAWAL",
-        "date": "2025-03-29 02:31"
-      },
-      {
-        "amount": 10.00,
-        "type": "ADDTOBALANCE",
-        "date": "2025-03-29 02:32"
-      },
-      {
-        "amount": 111.00,
-        "type": "TRANSFER",
-        "date": "2025-03-29 12:17"
-      },
-      {
-        "amount": -1000.00,
-        "type": "WITHDRAWAL",
-        "date": "2025-04-03 17:28"
-      },
-      {
-        "amount": 1000.00,
-        "type": "ADDTOBALANCE",
-        "date": "2025-04-03 20:56"
-      },
-      {
-        "amount": -111.00,
-        "type": "WITHDRAWAL",
-        "date": "2025-04-03 20:56"
-      }
-    ]
-  },
-  {
-    "username": "staslemanov",
-    "password": "goodPassword123",
-    "name": "Stanislav",
-    "surname": "Lemanov",
-    "balance": 145446.88,
-    "accountNumber": "LV29HABA9691951519260",
-    "transactions": [
-      {
-        "amount": 150000.00,
-        "type": "ADDTOBALANCE",
-        "date": "2025-03-29 00:27"
-      },
-      {
-        "amount": -7777.12,
-        "type": "TRANSFER",
-        "date": "2025-03-29 00:28"
-      },
-      {
-        "amount": 1000.00,
-        "type": "ADDTOBALANCE",
-        "date": "2025-03-29 00:33"
-      },
-      {
-        "amount": -1000.00,
-        "type": "TRANSFER",
-        "date": "2025-03-29 00:34"
-      },
-      {
-        "amount": 1111.00,
-        "type": "TRANSFER",
-        "date": "2025-03-29 00:37"
-      },
-      {
-        "amount": 1111.00,
-        "type": "TRANSFER",
-        "date": "2025-03-29 00:38"
-      },
-      {
-        "amount": -10.00,
-        "type": "WITHDRAWAL",
-        "date": "2025-03-29 00:42"
-      },
-      {
-        "amount": 123.00,
-        "type": "ADDTOBALANCE",
-        "date": "2025-03-29 01:38"
-      },
-      {
-        "amount": -111.00,
-        "type": "TRANSFER",
-        "date": "2025-03-29 12:17"
-      },
-      {
-        "amount": 1122.00,
-        "type": "TRANSFER",
-        "date": "2025-03-29 12:26"
-      },
-      {
-        "amount": -1122.00,
-        "type": "TRANSFER",
-        "date": "2025-03-29 12:26"
-      }
-    ]
-  },
-  {
-    "username": "asd",
-    "password": "af",
-    "name": "a",
-    "surname": "a",
-    "balance": 366.20,
-    "accountNumber": "LV29HABA7441979512118",
-    "transactions": [
-      {
-        "amount": 200.00,
-        "type": "ADDTOBALANCE",
-        "date": "2025-04-05 19:14"
-      },
-      {
-        "amount": 20.00,
-        "type": "BONUS",
-        "date": "2025-04-05 19:14"
-      },
-      {
-        "amount": 132.00,
-        "type": "ADDTOBALANCE",
-        "date": "2025-04-05 19:14"
-      },
-      {
-        "amount": 13.20,
-        "type": "BONUS",
-        "date": "2025-04-05 19:14"
-      },
-      {
-        "amount": 1.00,
-        "type": "ADDTOBALANCE",
-        "date": "2025-04-05 21:34"
-      },
-      {
-        "amount": -1.00,
-        "type": "WITHDRAWAL",
-        "date": "2025-04-05 21:40"
-      },
-      {
-        "amount": 1.00,
-        "type": "ADDTOBALANCE",
-        "date": "2025-04-06 14:56"
+        "date": "2025-04-22 12:39"
       }
     ],
     "firstTopUp": false,
     "addBonus": false
   },
   {
-    "username": "qweqeqweqweqw2",
-    "password": "qweqeqweqweqw2",
-    "name": "qweqeqweqweqw2",
-    "surname": "qweqeqweqweqw2",
-    "balance": 220.00,
-    "accountNumber": "LV29HABA7826907990308",
+    "username": "VaBankUser",
+    "password": "user1234",
+    "name": "Happy",
+    "surname": "User",
+    "balance": 1417.34,
+    "accountNumber": "LV29HABA009077060553",
     "transactions": [
       {
-        "amount": 200.00,
+        "amount": 500.00,
         "type": "ADDTOBALANCE",
-        "date": "2025-04-07 13:56"
+        "date": "2025-03-08 14:13"
       },
       {
-        "amount": 20.00,
+        "amount": 50.00,
         "type": "BONUS",
-        "date": "2025-04-07 13:56"
+        "date": "2025-03-08 14:13"
+      },
+      {
+        "amount": -200.00,
+        "type": "WITHDRAWAL",
+        "date": "2025-03-10 17:28"
+      },
+      {
+        "amount": 333.33,
+        "type": "ADDTOBALANCE",
+        "date": "2025-03-26 14:00"
+      },
+      {
+        "amount": 100.00,
+        "type": "ADDTOBALANCE",
+        "date": "2025-04-01 18:30"
+      },
+      {
+        "amount": -15.99,
+        "type": "WITHDRAWAL",
+        "date": "2025-04-08 12:00"
+      },
+      {
+        "amount": -50.00,
+        "type": "TRANSFER",
+        "date": "2025-04-09 09:59"
+      },
+      {
+        "amount": 600.00,
+        "type": "TRANSFER",
+        "date": "2025-04-13 21:21"
+      },
+      {
+        "amount": 100.00,
+        "type": "ADDTOBALANCE",
+        "date": "2025-04-08 15:20"
       }
     ],
     "firstTopUp": false,

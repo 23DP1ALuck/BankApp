@@ -11,11 +11,11 @@ import javafx.scene.control.ToggleGroup;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+
 import models.Transaction;
 import models.User;
 import services.Database;
 
-import javax.xml.stream.EventFilter;
 import java.io.IOException;
 import java.math.BigDecimal;
 
@@ -24,9 +24,7 @@ public class PaymentStack {
     private User currentUser;
 
     @FXML
-    private TextField accNumField;
-    @FXML
-    private TextField amountField;
+    private TextField accNumField, amountField;
     @FXML
     private RadioButton addMoneyButton, withdrawButton, transferButton;
     @FXML
@@ -45,30 +43,27 @@ public class PaymentStack {
         transferButton.setOnAction(this::radioChoice);
 
         // blocks to type unwanted symbols
-        amountField.addEventFilter(KeyEvent.ANY, event ->{
+        amountField.addEventFilter(KeyEvent.ANY, event -> {
             if (event.getCode() == KeyCode.BACK_SPACE || event.getCode() == KeyCode.LEFT || event.getCode() == KeyCode.RIGHT) {
                 return; // Allows backspace, left, right arrows
             }
             String c = event.getCharacter(); // Receives input
-//            allows only numbers and dot. block if only single dot in input
+            // allows only numbers and dot. block if only single dot in input
             if(!c.matches("[0-9.]") || (c.equals(".") && amountField.getText().contains("."))){
                 event.consume();
             }
-//            split to two different parts. allows to type only two digits after dot
+            // split to two different parts. allows to type only two digits after dot
             if(amountField.getText().split("\\.").length > 1 && amountField.getText().split("\\.")[1].length() >= 2){
                 event.consume();
             }
         });
 
         // hides userMessage if something is typed
-        amountField.textProperty().addListener((observable, oldValue, newValue) -> {
-            userMessage.setVisible(false);
-        });
-        accNumField.textProperty().addListener((observable, oldValue, newValue) -> {
-            userMessage.setVisible(false);
-        });
+        amountField.textProperty().addListener((observable, oldValue, newValue) -> userMessage.setVisible(false));
+        accNumField.textProperty().addListener((observable, oldValue, newValue) -> userMessage.setVisible(false));
         // hides userMessage by default
         userMessage.setVisible(false);
+
         completeButton.sceneProperty().addListener((observable, oldScene, newScene) -> {
             if (newScene != null) {
                 newScene.addEventFilter(KeyEvent.KEY_PRESSED, event -> {
@@ -85,13 +80,13 @@ public class PaymentStack {
         accNumField.setDisable(true);
     }
 
-    public void radioChoice(ActionEvent event) {
+    private void radioChoice(ActionEvent event) {
         userMessage.setVisible(false);
         accNumField.clear();
         accNumField.setDisable(!type.getSelectedToggle().equals(transferButton));
     }
 
-    public Transaction createTransaction() throws TypeOrFieldsNotSetException {
+    private Transaction createTransaction() throws TypeOrFieldsNotSetException {
         TransactionType type;
         if (addMoneyButton.isSelected()) {
             type = TransactionType.ADDTOBALANCE;
@@ -110,14 +105,14 @@ public class PaymentStack {
         } else throw new TypeOrFieldsNotSetException();
     }
 
-    public void completeTransaction(ActionEvent event) {
+    private void completeTransaction(ActionEvent event) {
         userMessage.getStyleClass().clear();
         try {
             Transaction transaction = createTransaction();
             if(addMoneyButton.isSelected() || withdrawButton.isSelected()) {
                 currentUser.performTransaction(transaction);
                 db.saveToJson(currentUser);
-                //                completed transaction label
+                // completed transaction label
                 amountField.clear();
                 userMessage.setText("Transaction completed.");
                 userMessage.getStyleClass().add("completed");
@@ -127,10 +122,10 @@ public class PaymentStack {
                 currentUser.performTransaction(transaction, recipient);
                 db.saveToJson(currentUser);
                 db.saveToJson(recipient);
-//                clear when button pressed
+                // clear when button pressed
                 amountField.clear();
                 accNumField.clear();
-                //                completed transaction label
+                // completed transaction label
                 userMessage.setText("Transaction completed.");
                 userMessage.getStyleClass().add("completed");
                 userMessage.setVisible(true);

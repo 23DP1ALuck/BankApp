@@ -2,8 +2,10 @@ package org.example;
 
 import Exceptions.NotValidPasswordException;
 import Exceptions.NotValidUsernameException;
+import Exceptions.FieldsAreBlankException;
+import Exceptions.UserExistsException;
+
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -19,9 +21,8 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
+
 import services.Database;
-import Exceptions.FieldsAreBlankException;
-import Exceptions.UserExistsException;
 import services.Validator;
 
 import java.io.IOException;
@@ -33,17 +34,11 @@ public class Registration {
     private String password;
 
     @FXML
-    private TextField usernameField;
-    @FXML
-    private TextField nameField;
+    private TextField usernameField, nameField, surnameField;
     @FXML
     private PasswordField passwordField;
     @FXML
-    private TextField surnameField;
-    @FXML
-    private Label userMessage;
-    @FXML
-    private Label switchToLogin;
+    private Label userMessage, switchToLogin;
     @FXML
     private Button signUpButton, showPassButton;
     @FXML
@@ -129,16 +124,14 @@ public class Registration {
         userMessage.setText("");
         checkIfBlank();
         String username = this.usernameField.getText();
-//        usernameValidation();
+        // Username validation (regex) and check if username is already taken
         validator.validateUsername(username);
         String password = this.passwordField.getText();
-//        passwordValidation();
+        // password validation (regex)
         validator.validatePass(password);
         String name = this.nameField.getText();
         String surname = this.surnameField.getText();
         database.addUserToDatabase(username, password, name, surname);
-        // just reminder with login details
-        System.out.printf("login: %s, password: %s\n", username, password);
         return true;
     }
 

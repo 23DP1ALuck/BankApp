@@ -3,6 +3,7 @@ package org.example;
 import Exceptions.IncorrectPassException;
 import Exceptions.NoSuchUserException;
 import Exceptions.FieldsAreBlankException;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -20,6 +21,7 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
+
 import models.User;
 import services.Database;
 
@@ -34,9 +36,7 @@ public class Login {
     @FXML
     private PasswordField passwordField;
     @FXML
-    private Label userMessage;
-    @FXML
-    private Label switchToRegistration;
+    private Label userMessage, switchToRegistration;
     @FXML
     private Button loginButton, showPassButton;
     @FXML
@@ -83,7 +83,7 @@ public class Login {
     }
 
     // switch to registration scene
-    public void switchToRegistration(MouseEvent event) {
+    private void switchToRegistration(MouseEvent event) {
         try {
             Parent root = FXMLLoader.load(getClass().getResource("/registration.fxml"));
             stage = (Stage)((Node)event.getSource()).getScene().getWindow();
