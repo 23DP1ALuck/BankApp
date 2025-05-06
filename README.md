@@ -167,13 +167,16 @@ public void validateUsername(String username) throws UserExistsException {
 
 Below is the simplest way to install and run **BankApp**:
 
-1. **Download the Project from GitHub**  
+1. **Download the Project from GitHub or https://vabank-23dp1alucks-projects.vercel.app**  
    - Visit the project’s GitHub repository and click the green **Code** button.  
    - Download the ZIP or clone the repository to your local machine.
 
-2. **Locate the `.exe` File**  
-   - Once downloaded, look inside the project folder for **`BankApp.exe`**.
+2. **Locate the `.exe` or `.command` File**  
+   - Once downloaded, look inside the project folder for `run_VaBank_win.exe` or `run_VaBank_macOS.command` depending on your OS.
 
-3. **Run the `.exe` File**  
-   - Double-click the `.exe` to launch the application.  
+3. **Run file**  
+   - Double-click the corresponding to your OS file to launch the application.  
    - On some systems, you may see a security prompt—allow the application to run if prompted.
+   
+   Or
+   - Run manually through terminal by typing maven command `clean javafx:run`
