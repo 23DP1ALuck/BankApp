@@ -27,13 +27,7 @@
     font-family: "Montserrat SemiBold";
     src: url("../fonts/Montserrat-SemiBold.ttf")
 }
-Label{
-    -fx-font-family: "Montserrat SemiBold";
-}
-TextField{
-    -fx-font-family: "Montserrat SemiBold";
-}
-PasswordField{
+Label, TextField, PasswordField, Button{
     -fx-font-family: "Montserrat SemiBold";
 }
 #test{
